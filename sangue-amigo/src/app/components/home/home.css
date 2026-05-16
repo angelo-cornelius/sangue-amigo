@@ -1,0 +1,108 @@
+.home-hero {
+  background: var(--cor-primaria);
+  color: #fff;
+  padding: 32px 0 64px;
+}
+
+.hero-top {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.cidade {
+  font-size: 14px;
+  background: rgba(255,255,255,0.15);
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.hero-saudacao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-saudacao h1 {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.hero-saudacao h1 strong {
+  font-weight: 800;
+  display: inline-block;
+}
+
+.tipo-badge {
+  background: #fff;
+  color: var(--cor-primaria);
+  font-weight: 700;
+  font-size: 22px;
+  padding: 8px 22px;
+  border-radius: 24px;
+}
+
+.home-conteudo {
+  margin-top: -32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.atalhos {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.atalho {
+  flex: 1;
+  max-width: 240px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 14px;
+}
+
+.alerta {
+  border: 2px solid var(--cor-primaria);
+  background: var(--cor-fundo-suave);
+  text-align: center;
+}
+
+.alerta h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.vazio {
+  text-align: center;
+}
+
+.vazio .icone {
+  font-size: 42px;
+  margin-bottom: 8px;
+}
+
+.vazio h3 { margin: 0 0 8px; }
+
+.vazio p {
+  color: var(--cor-texto-suave);
+  margin: 0 0 16px;
+}
+
+.lista-agendamentos {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+}
+
+.lista-agendamentos li {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.lista-agendamentos li:last-child { border-bottom: none; }

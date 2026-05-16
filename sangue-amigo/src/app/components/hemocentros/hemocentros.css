@@ -1,0 +1,108 @@
+.hemo h1 { font-size: 28px; margin: 0 0 4px; }
+.sub { color: var(--cor-texto-suave); margin: 0 0 20px; }
+
+.filtros { margin-bottom: 20px; }
+
+.filtro-linha { margin-bottom: 12px; }
+.filtro-linha:last-child { margin-bottom: 0; }
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  background: #fff;
+  border: 1px solid var(--cor-borda-input);
+  color: var(--cor-primaria);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.chip:hover { background: var(--cor-fundo-suave); }
+
+.chip.ativo {
+  background: var(--cor-primaria);
+  color: #fff;
+  border-color: var(--cor-primaria);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+.mapa-placeholder {
+  background: linear-gradient(135deg, #ffe5e5 0%, #fff5f5 100%);
+  border: 2px dashed var(--cor-primaria-clara);
+  border-radius: 14px;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mapa-inner {
+  text-align: center;
+  color: var(--cor-texto-suave);
+}
+
+.mapa-icon { font-size: 56px; margin-bottom: 8px; }
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hemo-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.1s, box-shadow 0.15s;
+}
+
+.hemo-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(239, 91, 91, 0.18);
+}
+
+.hemo-icone {
+  font-size: 32px;
+  background: var(--cor-fundo-suave);
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.hemo-info { flex: 1; }
+.hemo-info h3 { margin: 0 0 4px; font-size: 17px; }
+
+.endereco, .horario {
+  margin: 2px 0;
+  font-size: 14px;
+  color: var(--cor-texto-suave);
+}
+
+.seta {
+  font-size: 28px;
+  color: var(--cor-primaria);
+}
+
+.vazio { text-align: center; color: var(--cor-texto-suave); }

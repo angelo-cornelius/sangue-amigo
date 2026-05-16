@@ -1,0 +1,28 @@
+<section class="container hemo-det">
+  <a class="voltar" routerLink="/hemocentros">‹ Voltar</a>
+
+  @if (hemocentro()) {
+    <div class="card cabecalho">
+      <h1>{{ hemocentro()!.nome }}</h1>
+      <p class="endereco">{{ hemocentro()!.endereco }} — {{ hemocentro()!.cidade }}/{{ hemocentro()!.estado }}</p>
+      <p class="horario">⏰ {{ hemocentro()!.horario_funcionamento }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Estoque atual</h3>
+      <div class="estoque-grid">
+        @for (e of hemocentro()!.estoque ?? []; track e.tipo_sanguineo) {
+          <div class="estoque-item" [attr.data-nivel]="e.nivel">
+            <span class="tipo">{{ e.tipo_sanguineo }}</span>
+            <span class="unidades">{{ e.unidades_disponiveis }} un.</span>
+            <span class="nivel">{{ e.nivel }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <a class="btn-primary agendar" routerLink="/agendar">Agendar doação neste hemocentro</a>
+  } @else {
+    <p>Carregando…</p>
+  }
+</section>

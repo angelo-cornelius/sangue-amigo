@@ -1,0 +1,27 @@
+<section class="container-narrow">
+  <div class="topo">
+    <h1>Meus agendamentos</h1>
+    <a routerLink="/agendar" class="btn-primary">+ Novo</a>
+  </div>
+
+  @if (agendamentos().length === 0) {
+    <div class="card vazio">
+      <div class="icone">📅</div>
+      <p>Você ainda não tem agendamentos.</p>
+    </div>
+  } @else {
+    <div class="lista">
+      @for (a of agendamentos(); track a.id) {
+        <div class="card item">
+          <div class="info">
+            <h3>{{ a.nome_hospital }}</h3>
+            @if (a.data_hora) { <p class="data">📅 {{ a.data_hora }}</p> }
+          </div>
+          <span class="status" [attr.data-status]="a.status ?? 'pendente'">
+            {{ a.status ?? 'pendente' }}
+          </span>
+        </div>
+      }
+    </div>
+  }
+</section>

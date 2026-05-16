@@ -1,0 +1,27 @@
+<section class="container-narrow eleg">
+  <h1>Elegibilidade para doação</h1>
+  <p class="sub">Acompanhe quanto falta para você poder doar novamente.</p>
+
+  <div class="grafico card">
+    <svg viewBox="0 0 200 200" class="ring">
+      <circle cx="100" cy="100" [attr.r]="raio"
+              fill="none" stroke="var(--cor-primaria-clara)" stroke-width="14" />
+      <circle cx="100" cy="100" [attr.r]="raio"
+              fill="none" stroke="var(--cor-primaria)" stroke-width="14"
+              stroke-linecap="round"
+              [attr.stroke-dasharray]="circunferencia()"
+              [attr.stroke-dashoffset]="offset()"
+              transform="rotate(-90 100 100)" />
+      <text x="100" y="100" text-anchor="middle" dominant-baseline="central"
+            class="ring-percent">{{ percentual() }}%</text>
+    </svg>
+
+    <p class="status" [class.ok]="elegivel()">{{ mensagem() }}</p>
+
+    @if (elegivel()) {
+      <a class="btn-primary" routerLink="/agendar">Agendar doação</a>
+    } @else {
+      <a class="btn-outline" routerLink="/home">Voltar à Home</a>
+    }
+  </div>
+</section>

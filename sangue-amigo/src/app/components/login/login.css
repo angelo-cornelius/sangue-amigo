@@ -1,0 +1,47 @@
+.login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cor-fundo-suave);
+  padding: 32px;
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 40px 48px;
+  box-shadow: var(--sombra-card);
+  width: 100%;
+  max-width: 420px;
+}
+
+.login-card h1 {
+  margin: 0 0 4px;
+  font-size: 28px;
+}
+
+.sub {
+  color: var(--cor-texto-suave);
+  margin: 0 0 28px;
+  font-size: 14px;
+}
+
+.login-btn {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.cad-link {
+  text-align: center;
+  margin: 20px 0 0;
+  font-size: 14px;
+  color: var(--cor-texto-suave);
+}
+
+.cad-link a {
+  color: var(--cor-primaria);
+  font-weight: 600;
+  text-decoration: none;
+}
+.cad-link a:hover { text-decoration: underline; }

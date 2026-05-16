@@ -1,0 +1,92 @@
+<section class="cad-wrap">
+  <div class="cad-card">
+    <h1>Cadastro de Doador</h1>
+    <p class="sub">Preencha seus dados para começar a salvar vidas.</p>
+
+    <div class="grid">
+      <div class="campo col-2">
+        <label class="label">Nome completo *</label>
+        <input class="input" type="text" [(ngModel)]="nome" />
+      </div>
+
+      <div class="campo">
+        <label class="label">CPF *</label>
+        <input class="input" type="text" [(ngModel)]="CPF" placeholder="000.000.000-00" />
+      </div>
+
+      <div class="campo">
+        <label class="label">E-mail</label>
+        <input class="input" type="email" [(ngModel)]="email" />
+      </div>
+
+      <div class="campo">
+        <label class="label">Telefone</label>
+        <input class="input" type="text" [(ngModel)]="telefone" />
+      </div>
+
+      <div class="campo">
+        <label class="label">Estado</label>
+        <input class="input" type="text" [(ngModel)]="estado" maxlength="2" />
+      </div>
+
+      <div class="campo">
+        <label class="label">Cidade</label>
+        <input class="input" type="text" [(ngModel)]="cidade" />
+      </div>
+
+      <div class="campo">
+        <label class="label">Bairro</label>
+        <input class="input" type="text" [(ngModel)]="bairro" />
+      </div>
+
+      <div class="campo col-2">
+        <label class="label">Logradouro</label>
+        <input class="input" type="text" [(ngModel)]="logradouro" />
+      </div>
+
+      <div class="campo">
+        <label class="label">Tipo Sanguíneo *</label>
+        <select class="select" [(ngModel)]="tipo_sanguineo">
+          <option value="">Selecione...</option>
+          @for (t of tipos; track t) {
+            <option [value]="t">{{ t }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="campo">
+        <label class="label">Sexo</label>
+        <select class="select" [(ngModel)]="sexo">
+          <option value="">Selecione...</option>
+          <option value="M">Masculino</option>
+          <option value="F">Feminino</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label class="label">Idade</label>
+        <input class="input" type="number" [(ngModel)]="idade" min="16" max="120" />
+      </div>
+
+      <div class="campo">
+        <label class="label">Peso (kg)</label>
+        <input class="input" type="number" [(ngModel)]="peso" min="0" step="0.1" />
+      </div>
+
+      <div class="campo">
+        <label class="label">Altura (m)</label>
+        <input class="input" type="number" [(ngModel)]="altura" min="0" step="0.01" />
+      </div>
+    </div>
+
+    @if (erro()) { <p class="msg-erro">{{ erro() }}</p> }
+    @if (sucesso()) { <p class="msg-sucesso">{{ sucesso() }}</p> }
+
+    <div class="acoes">
+      <a routerLink="/" class="btn-outline">Voltar</a>
+      <button class="btn-primary" (click)="cadastrar()" [disabled]="enviando()">
+        {{ enviando() ? 'Enviando...' : 'Cadastrar-se' }}
+      </button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,53 @@
+<section class="home-hero">
+  <div class="container">
+    <div class="hero-top">
+      <span class="cidade">📍 {{ cidade() }}</span>
+    </div>
+    <div class="hero-saudacao">
+      <h1>Olá,<br/><strong>{{ nome() }}</strong></h1>
+      <span class="tipo-badge">{{ tipoUsuario() }}</span>
+    </div>
+  </div>
+</section>
+
+<section class="home-conteudo container">
+  <div class="atalhos">
+    <a class="btn-primary atalho" routerLink="/elegibilidade">Doar</a>
+    <a class="btn-primary atalho" routerLink="/agendar">Agendar</a>
+  </div>
+
+  @if (tiposCriticos().length > 0) {
+    <div class="card alerta">
+      <h3>Estoque em estado crítico</h3>
+      <p>
+        Os estoques dos tipos sanguíneos
+        @for (t of tiposCriticos(); track t; let last = $last) {
+          <strong>{{ t }}</strong>@if (!last) {<span>, </span>}
+        }
+        estão em estado <strong>crítico</strong>. A doação de sangue é um processo
+        rápido e seguro. Se possível, procure um ponto de coleta ou agende sua doação.
+      </p>
+    </div>
+  }
+
+  @if (agendamentos().length === 0) {
+    <div class="card vazio">
+      <div class="icone">📅</div>
+      <h3>Nenhum agendamento ativo</h3>
+      <p>Você ainda não possui nenhuma doação agendada. Agende uma data para realizar sua próxima doação.</p>
+      <a routerLink="/agendar" class="btn-primary">Agendar</a>
+    </div>
+  } @else {
+    <div class="card">
+      <h3>Próximos agendamentos</h3>
+      <ul class="lista-agendamentos">
+        @for (a of agendamentos(); track a.id) {
+          <li>
+            <strong>{{ a.nome_hospital }}</strong>
+            @if (a.data_hora) { <span> — {{ a.data_hora }}</span> }
+          </li>
+        }
+      </ul>
+    </div>
+  }
+</section>

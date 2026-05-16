@@ -1,0 +1,36 @@
+<section class="container-narrow">
+  <h1>Histórico de doações</h1>
+
+  <div class="card form-doacao">
+    <h3>Registrar nova doação</h3>
+    <div class="linha">
+      <div class="campo">
+        <label class="label">Data da doação</label>
+        <input class="input" type="date" [(ngModel)]="dataNova" />
+      </div>
+      <button class="btn-primary" (click)="registrar()" [disabled]="enviando()">
+        {{ enviando() ? 'Salvando...' : 'Registrar' }}
+      </button>
+    </div>
+    @if (erro()) { <p class="msg-erro">{{ erro() }}</p> }
+    @if (sucesso()) { <p class="msg-sucesso">{{ sucesso() }}</p> }
+  </div>
+
+  @if (doacoes().length === 0) {
+    <div class="card vazio">
+      <p>Você ainda não registrou nenhuma doação.</p>
+    </div>
+  } @else {
+    <div class="lista">
+      @for (d of doacoes(); track d.id) {
+        <div class="card item">
+          <div class="info">
+            <p class="data">{{ d.ultima_doacao }}</p>
+            <p class="tipo">Tipo: <strong>{{ d.tipo_sanguineo }}</strong></p>
+          </div>
+          <span class="icone">🩸</span>
+        </div>
+      }
+    </div>
+  }
+</section>

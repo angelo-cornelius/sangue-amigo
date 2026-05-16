@@ -1,0 +1,37 @@
+.agendar h1 { margin: 0 0 4px; font-size: 28px; }
+.sub { color: var(--cor-texto-suave); margin: 0 0 20px; }
+
+.horarios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 600px) {
+  .horarios { grid-template-columns: repeat(2, 1fr); }
+}
+
+.horario-btn {
+  background: var(--cor-primaria-clara);
+  color: var(--cor-primaria-escura);
+  border: 1px solid var(--cor-borda-input);
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.horario-btn:hover { background: #f5d5d5; }
+
+.horario-btn.ativo {
+  background: var(--cor-primaria);
+  color: #fff;
+  border-color: var(--cor-primaria);
+}
+
+.confirmar {
+  width: 100%;
+  margin-top: 12px;
+}

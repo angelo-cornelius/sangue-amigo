@@ -1,0 +1,75 @@
+.landing {
+  min-height: 100vh;
+  background: var(--cor-primaria);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.landing-content {
+  text-align: center;
+  max-width: 560px;
+  padding: 40px;
+}
+
+.logo-marca {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+.gota { margin-bottom: 16px; }
+
+.titulo {
+  color: #fff;
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: 2px;
+  margin: 0 0 12px;
+}
+
+.subtitulo {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.acoes {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.btn-entrar,
+.btn-cadastrar {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 14px 24px;
+  border-radius: 28px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: transform 0.1s, background 0.15s;
+}
+
+.btn-entrar {
+  background: #fff;
+  color: var(--cor-primaria);
+}
+.btn-entrar:hover { background: #fff5f5; }
+
+.btn-cadastrar {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+}
+.btn-cadastrar:hover { background: rgba(255, 255, 255, 0.12); }
+
+.btn-entrar:active,
+.btn-cadastrar:active { transform: scale(0.98); }

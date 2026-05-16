@@ -1,0 +1,36 @@
+.eleg h1 {
+  font-size: 28px;
+  margin: 0 0 4px;
+}
+
+.sub {
+  color: var(--cor-texto-suave);
+  margin: 0 0 24px;
+}
+
+.grafico {
+  text-align: center;
+  padding: 32px;
+}
+
+.ring {
+  width: 240px;
+  height: 240px;
+}
+
+.ring-percent {
+  font-size: 36px;
+  font-weight: 700;
+  fill: var(--cor-primaria);
+}
+
+.status {
+  margin: 20px 0 24px;
+  font-size: 18px;
+  color: var(--cor-texto-suave);
+}
+
+.status.ok {
+  color: var(--cor-normal);
+  font-weight: 600;
+}

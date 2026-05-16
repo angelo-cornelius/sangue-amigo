@@ -1,0 +1,21 @@
+<section class="container-narrow">
+  <h1>Notificações</h1>
+
+  @if (notificacoes().length === 0) {
+    <div class="card vazio">
+      <p>Não há notificações.</p>
+    </div>
+  } @else {
+    <div class="lista">
+      @for (n of notificacoes(); track n.id) {
+        <div class="card item" [class.lida]="n.lida">
+          <div class="info">
+            <p class="data">{{ n.data }}</p>
+            <p class="titulo">{{ n.titulo }}</p>
+          </div>
+          @if (!n.lida) { <span class="dot" aria-label="Não lida"></span> }
+        </div>
+      }
+    </div>
+  }
+</section>

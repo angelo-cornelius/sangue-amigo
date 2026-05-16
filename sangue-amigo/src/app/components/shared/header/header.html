@@ -1,0 +1,30 @@
+<header class="header">
+  <a class="logo" routerLink="/home">
+    <span class="logo-icon">🩸</span>
+    <span class="logo-text">Sangue Amigo</span>
+  </a>
+
+  <nav class="nav">
+    <a routerLink="/home" routerLinkActive="active">Início</a>
+    <a routerLink="/hemocentros" routerLinkActive="active">Hemocentros</a>
+    <a routerLink="/agendar" routerLinkActive="active">Agendar</a>
+    <a routerLink="/agendamentos" routerLinkActive="active">Agendamentos</a>
+    <a routerLink="/doacoes" routerLinkActive="active">Doações</a>
+    <a routerLink="/notificacoes" routerLinkActive="active">Notificações</a>
+  </nav>
+
+  <div class="perfil-area">
+    @if (sessao.logado()) {
+      <span class="perfil-nome">{{ sessao.usuario()?.nome }}</span>
+      <a routerLink="/perfil" class="perfil-icon" title="Meu perfil" aria-label="Meu perfil">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <circle cx="12" cy="8" r="4" fill="currentColor"/>
+          <path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="currentColor"/>
+        </svg>
+      </a>
+      <button class="sair-btn" (click)="sair()">Sair</button>
+    } @else {
+      <a routerLink="/login" class="entrar-link">Entrar</a>
+    }
+  </div>
+</header>

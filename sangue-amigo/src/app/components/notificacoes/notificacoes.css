@@ -1,0 +1,33 @@
+h1 { font-size: 28px; margin: 0 0 20px; }
+
+.vazio { text-align: center; color: var(--cor-texto-suave); }
+
+.lista { display: flex; flex-direction: column; gap: 10px; }
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.item.lida { opacity: 0.7; }
+
+.info { flex: 1; }
+
+.data {
+  margin: 0 0 4px;
+  font-size: 12px;
+  color: var(--cor-texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.titulo { margin: 0; font-weight: 600; color: var(--cor-primaria-escura); }
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cor-primaria);
+}
