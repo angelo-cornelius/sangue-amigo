@@ -1,4 +1,5 @@
 .app-main {
-  min-height: calc(100vh - 64px);
-  background: var(--cor-fundo);
+  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100dvh - var(--header-h));
+  background: var(--bg);
 }

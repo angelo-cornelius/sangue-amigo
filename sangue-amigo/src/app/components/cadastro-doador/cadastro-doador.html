@@ -1,92 +1,130 @@
 <section class="cad-wrap">
-  <div class="cad-card">
-    <h1>Cadastro de Doador</h1>
-    <p class="sub">Preencha seus dados para começar a salvar vidas.</p>
+  <div class="cad-shell">
+    <a routerLink="/" class="voltar-home">
+      <app-icon name="arrow-left" [size]="18"/> Voltar
+    </a>
 
-    <div class="grid">
-      <div class="campo col-2">
-        <label class="label">Nome completo *</label>
-        <input class="input" type="text" [(ngModel)]="nome" />
+    <header class="cad-header">
+      <span class="eyebrow">Novo cadastro</span>
+      <h1>Vamos começar pelo essencial.</h1>
+      <p class="sub">Levará menos de um minuto. Você poderá completar seu perfil depois.</p>
+    </header>
+
+    <form class="cad-form" (ngSubmit)="cadastrar()" novalidate>
+      <fieldset class="secao">
+        <legend>
+          <span class="num">1</span>
+          <span class="t">Identificação</span>
+        </legend>
+
+        <div class="grid">
+          <div class="campo col-2">
+            <label class="label" for="nome">Nome completo *</label>
+            <input id="nome" class="input" type="text" name="nome" [(ngModel)]="nome" />
+          </div>
+
+          <div class="campo">
+            <label class="label" for="cpf">CPF *</label>
+            <input id="cpf" class="input" type="text" name="cpf" [(ngModel)]="CPF" placeholder="000.000.000-00" />
+          </div>
+
+          <div class="campo">
+            <label class="label" for="email">E-mail</label>
+            <input id="email" class="input" type="email" name="email" [(ngModel)]="email" />
+          </div>
+
+          <div class="campo">
+            <label class="label" for="tel">Telefone</label>
+            <input id="tel" class="input" type="text" name="telefone" [(ngModel)]="telefone" />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="secao">
+        <legend>
+          <span class="num">2</span>
+          <span class="t">Endereço</span>
+        </legend>
+
+        <div class="grid">
+          <div class="campo campo-uf">
+            <label class="label" for="estado">UF</label>
+            <input id="estado" class="input" type="text" name="estado" [(ngModel)]="estado" maxlength="2" placeholder="PR" />
+          </div>
+
+          <div class="campo">
+            <label class="label" for="cidade">Cidade</label>
+            <input id="cidade" class="input" type="text" name="cidade" [(ngModel)]="cidade" />
+          </div>
+
+          <div class="campo">
+            <label class="label" for="bairro">Bairro</label>
+            <input id="bairro" class="input" type="text" name="bairro" [(ngModel)]="bairro" />
+          </div>
+
+          <div class="campo col-2">
+            <label class="label" for="log">Logradouro</label>
+            <input id="log" class="input" type="text" name="logradouro" [(ngModel)]="logradouro" />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="secao">
+        <legend>
+          <span class="num">3</span>
+          <span class="t">Perfil sanguíneo</span>
+        </legend>
+
+        <div class="grid">
+          <div class="campo col-2">
+            <label class="label">Tipo sanguíneo *</label>
+            <div class="tipos">
+              @for (t of tipos; track t) {
+                <button type="button"
+                        class="tipo-chip"
+                        [class.ativo]="tipo_sanguineo === t"
+                        (click)="tipo_sanguineo = t">
+                  {{ t }}
+                </button>
+              }
+            </div>
+          </div>
+
+          <div class="campo">
+            <label class="label" for="sexo">Sexo</label>
+            <select id="sexo" class="select" name="sexo" [(ngModel)]="sexo">
+              <option value="">Selecione…</option>
+              <option value="M">Masculino</option>
+              <option value="F">Feminino</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label class="label" for="idade">Idade</label>
+            <input id="idade" class="input" type="number" name="idade" [(ngModel)]="idade" min="16" max="120" />
+          </div>
+
+          <div class="campo">
+            <label class="label" for="peso">Peso (kg)</label>
+            <input id="peso" class="input" type="number" name="peso" [(ngModel)]="peso" min="0" step="0.1" />
+          </div>
+
+          <div class="campo">
+            <label class="label" for="altura">Altura (m)</label>
+            <input id="altura" class="input" type="number" name="altura" [(ngModel)]="altura" min="0" step="0.01" />
+          </div>
+        </div>
+      </fieldset>
+
+      @if (erro()) { <p class="msg-erro" role="alert">{{ erro() }}</p> }
+      @if (sucesso()) { <p class="msg-sucesso" role="status">{{ sucesso() }}</p> }
+
+      <div class="acoes">
+        <a routerLink="/" class="btn-ghost">Cancelar</a>
+        <button class="btn-primary btn-lg" type="submit" [disabled]="enviando()">
+          {{ enviando() ? 'Enviando…' : 'Criar cadastro' }}
+        </button>
       </div>
-
-      <div class="campo">
-        <label class="label">CPF *</label>
-        <input class="input" type="text" [(ngModel)]="CPF" placeholder="000.000.000-00" />
-      </div>
-
-      <div class="campo">
-        <label class="label">E-mail</label>
-        <input class="input" type="email" [(ngModel)]="email" />
-      </div>
-
-      <div class="campo">
-        <label class="label">Telefone</label>
-        <input class="input" type="text" [(ngModel)]="telefone" />
-      </div>
-
-      <div class="campo">
-        <label class="label">Estado</label>
-        <input class="input" type="text" [(ngModel)]="estado" maxlength="2" />
-      </div>
-
-      <div class="campo">
-        <label class="label">Cidade</label>
-        <input class="input" type="text" [(ngModel)]="cidade" />
-      </div>
-
-      <div class="campo">
-        <label class="label">Bairro</label>
-        <input class="input" type="text" [(ngModel)]="bairro" />
-      </div>
-
-      <div class="campo col-2">
-        <label class="label">Logradouro</label>
-        <input class="input" type="text" [(ngModel)]="logradouro" />
-      </div>
-
-      <div class="campo">
-        <label class="label">Tipo Sanguíneo *</label>
-        <select class="select" [(ngModel)]="tipo_sanguineo">
-          <option value="">Selecione...</option>
-          @for (t of tipos; track t) {
-            <option [value]="t">{{ t }}</option>
-          }
-        </select>
-      </div>
-
-      <div class="campo">
-        <label class="label">Sexo</label>
-        <select class="select" [(ngModel)]="sexo">
-          <option value="">Selecione...</option>
-          <option value="M">Masculino</option>
-          <option value="F">Feminino</option>
-        </select>
-      </div>
-
-      <div class="campo">
-        <label class="label">Idade</label>
-        <input class="input" type="number" [(ngModel)]="idade" min="16" max="120" />
-      </div>
-
-      <div class="campo">
-        <label class="label">Peso (kg)</label>
-        <input class="input" type="number" [(ngModel)]="peso" min="0" step="0.1" />
-      </div>
-
-      <div class="campo">
-        <label class="label">Altura (m)</label>
-        <input class="input" type="number" [(ngModel)]="altura" min="0" step="0.01" />
-      </div>
-    </div>
-
-    @if (erro()) { <p class="msg-erro">{{ erro() }}</p> }
-    @if (sucesso()) { <p class="msg-sucesso">{{ sucesso() }}</p> }
-
-    <div class="acoes">
-      <a routerLink="/" class="btn-outline">Voltar</a>
-      <button class="btn-primary" (click)="cadastrar()" [disabled]="enviando()">
-        {{ enviando() ? 'Enviando...' : 'Cadastrar-se' }}
-      </button>
-    </div>
+    </form>
   </div>
 </section>

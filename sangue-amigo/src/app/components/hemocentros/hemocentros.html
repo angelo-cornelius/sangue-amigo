@@ -1,16 +1,21 @@
 <section class="container hemo">
-  <h1>Hemocentros próximos</h1>
-  <p class="sub">Encontre o ponto de coleta mais perto de você.</p>
+  <header class="hemo-head">
+    <div>
+      <span class="eyebrow">Onde doar</span>
+      <h1>Hemocentros próximos</h1>
+      <p class="sub">Encontre o ponto de coleta mais perto de você.</p>
+    </div>
+  </header>
 
-  <div class="filtros card">
-    <div class="filtro-linha">
-      <label class="label">Cidade</label>
-      <input class="input" type="text" placeholder="Digite a cidade"
+  <div class="filtros">
+    <div class="busca">
+      <app-icon name="search" [size]="18"/>
+      <input class="busca-input" type="text" placeholder="Buscar por cidade"
              [ngModel]="filtroCidade()" (ngModelChange)="filtroCidade.set($event)" />
     </div>
 
-    <div class="filtro-linha">
-      <label class="label">Tipo sanguíneo</label>
+    <div class="filtro-tipos">
+      <span class="filtro-label">Filtrar por tipo</span>
       <div class="chips">
         <button class="chip" [class.ativo]="filtroTipo() === ''" (click)="selecionarTipo('')">Todos</button>
         @for (t of tipos; track t) {
@@ -23,28 +28,35 @@
   <div class="layout">
     <aside class="mapa-placeholder">
       <div class="mapa-inner">
-        <div class="mapa-icon">🗺️</div>
-        <p>Mapa de hemocentros (em breve)</p>
-        <small>Visualização cartográfica será adicionada em uma próxima versão.</small>
+        <div class="mapa-icone">
+          <app-icon name="map" [size]="28"/>
+        </div>
+        <h3>Mapa em breve</h3>
+        <p>A visualização cartográfica dos hemocentros chega em uma próxima versão.</p>
       </div>
     </aside>
 
     <div class="lista">
       @if (filtrados().length === 0) {
-        <div class="card vazio">
+        <div class="vazio">
           <p>Nenhum hemocentro encontrado com os filtros atuais.</p>
         </div>
       }
 
       @for (h of filtrados(); track h.id) {
-        <a class="hemo-card card" [routerLink]="['/hemocentros', h.id]">
-          <div class="hemo-icone">🩸</div>
+        <a class="hemo-card" [routerLink]="['/hemocentros', h.id]">
+          <span class="hemo-icone">
+            <app-icon name="drop-fill" [size]="20"/>
+          </span>
           <div class="hemo-info">
             <h3>{{ h.nome }}</h3>
             <p class="endereco">{{ h.endereco }} — {{ h.cidade }}/{{ h.estado }}</p>
-            <p class="horario">⏰ {{ h.horario_funcionamento }}</p>
+            <p class="horario">
+              <app-icon name="clock" [size]="13"/>
+              {{ h.horario_funcionamento }}
+            </p>
           </div>
-          <span class="seta">›</span>
+          <app-icon name="chevron-right" [size]="20"/>
         </a>
       }
     </div>

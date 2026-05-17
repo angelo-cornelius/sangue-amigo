@@ -1,58 +1,80 @@
 <section class="container perfil">
-  <a class="voltar" routerLink="/home">‹ Voltar</a>
+  <a class="voltar" routerLink="/home">
+    <app-icon name="arrow-left" [size]="16"/> Voltar
+  </a>
 
   <header class="topo">
-    <div>
+    <div class="topo-info">
+      <span class="eyebrow">Meu perfil</span>
       <h1>{{ sessao.usuario()?.nome ?? 'Visitante' }}</h1>
-      <p class="sub">Tipo sanguíneo: <strong>{{ sessao.usuario()?.tipo_sanguineo ?? '—' }}</strong></p>
+      <p class="sub">
+        Tipo sanguíneo
+        <span class="tipo-pill">{{ sessao.usuario()?.tipo_sanguineo ?? '—' }}</span>
+      </p>
     </div>
-    <div class="avatar">
-      <svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true">
-        <circle cx="12" cy="8" r="4" fill="currentColor"/>
-        <path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="currentColor"/>
-      </svg>
+    <div class="avatar" aria-hidden="true">
+      <app-icon name="user" [size]="32"/>
     </div>
   </header>
 
-  <div class="grid">
-    <div class="card meta">
-      <p class="rotulo">Meta de doações</p>
-      <p class="meta-num">{{ metaTotal }}</p>
-      <p class="meta-info">Realizadas: <strong>{{ totalRealizadas() }}</strong></p>
-      <p class="meta-info">Tipo sanguíneo: <strong>{{ sessao.usuario()?.tipo_sanguineo ?? '—' }}</strong></p>
-    </div>
+  <div class="resumo">
+    <article class="meta">
+      <span class="rotulo">Meta de doações neste ano</span>
+      <div class="meta-progresso">
+        <span class="meta-num">{{ totalRealizadas() }}</span>
+        <span class="meta-de">de {{ metaTotal }}</span>
+      </div>
+      <div class="meta-barra">
+        <div class="meta-barra-preenchida" [style.width.%]="progresso()"></div>
+      </div>
+      <p class="meta-incentivo">
+        @if (progresso() >= 100) {
+          Meta atingida — muito obrigado pelas doações.
+        } @else {
+          Faltam {{ metaTotal - totalRealizadas() }} para concluir sua meta.
+        }
+      </p>
+    </article>
 
-    <div class="card pequeno">
-      <p class="rotulo">Última doação</p>
-      <p class="valor">{{ ultimaDoacao() ?? 'Nenhuma registrada' }}</p>
-    </div>
-
-    <div class="card pequeno">
-      <p class="rotulo">Vidas impactadas</p>
-      <p class="valor">Até {{ vidasImpactadas() }} vidas impactadas</p>
-    </div>
+    <aside class="lateral">
+      <div class="metric">
+        <span class="rotulo">Última doação</span>
+        <p class="valor">{{ ultimaDoacao() ?? '—' }}</p>
+      </div>
+      <div class="metric">
+        <span class="rotulo">Vidas impactadas</span>
+        <p class="valor"><strong>até {{ vidasImpactadas() }}</strong></p>
+      </div>
+    </aside>
   </div>
 
   @if (proximaData()) {
-    <div class="card proxima">
-      <div class="icone-grande">🩸</div>
+    <div class="proxima">
+      <div class="proxima-icone">
+        <app-icon name="drop-fill" [size]="22"/>
+      </div>
       <div>
-        <p class="rotulo">Você poderá doar novamente em:</p>
+        <p class="rotulo">Você poderá doar novamente em</p>
         <p class="valor-grande">{{ proximaData() }}</p>
       </div>
     </div>
   }
 
   <h2 class="titulo-secao">Conquistas</h2>
-  <div class="conquistas">
+  <ul class="conquistas">
     @for (c of conquistas; track c.id) {
-      <div class="conquista" [class.bloqueada]="!c.conquistada">
-        <div class="trofeu">🏆</div>
-        <div>
+      <li class="conquista" [class.bloqueada]="!c.conquistada">
+        <span class="trofeu" aria-hidden="true">
+          <app-icon [name]="c.conquistada ? 'trophy' : 'shield'" [size]="22"/>
+        </span>
+        <div class="conquista-info">
           <h3>{{ c.titulo }}</h3>
           <p>{{ c.descricao }}</p>
         </div>
-      </div>
+        @if (c.conquistada) {
+          <span class="check"><app-icon name="check" [size]="16"/></span>
+        }
+      </li>
     }
-  </div>
+  </ul>
 </section>

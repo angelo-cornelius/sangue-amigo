@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { SessaoService } from '../../services/sessao';
 import { SangueAmigoService } from '../../services/sangue-amigo';
 import { Doacao } from '../../models/doacao';
+import { Icon } from '../shared/icon/icon';
 
 interface Conquista {
   id: number;
@@ -14,7 +15,7 @@ interface Conquista {
 
 @Component({
   selector: 'app-perfil',
-  imports: [RouterLink],
+  imports: [RouterLink, Icon],
   templateUrl: './perfil.html',
   styleUrl: './perfil.css',
 })
@@ -26,6 +27,8 @@ export class Perfil implements OnInit {
   metaTotal = 3;
 
   totalRealizadas = computed(() => this.doacoes().length);
+
+  progresso = computed(() => Math.min(100, Math.round(this.totalRealizadas() / this.metaTotal * 100)));
 
   vidasImpactadas = computed(() => this.totalRealizadas() * 4);
 

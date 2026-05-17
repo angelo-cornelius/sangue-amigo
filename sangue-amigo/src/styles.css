@@ -1,117 +1,408 @@
-/* ===== Paleta Sangue Amigo ===== */
+/* ============================================================
+   Sangue Amigo — Design System
+   Paleta OKLCH, neutros tingidos no matiz da marca,
+   escala tipográfica modular, elevações e motion sutil.
+   ============================================================ */
+
 :root {
-  --cor-primaria: #ef5b5b;
-  --cor-primaria-escura: #c94545;
-  --cor-primaria-clara: #f8e5e5;
-  --cor-fundo: #ffffff;
-  --cor-fundo-suave: #fff5f5;
-  --cor-texto: #2b2b2b;
-  --cor-texto-suave: #6b6b6b;
-  --cor-borda: #ebd2d2;
-  --cor-borda-input: #f0bdbd;
-  --cor-critico: #c94545;
-  --cor-baixo: #e07a3b;
-  --cor-normal: #4a9d6a;
-  --cor-alto: #2d7a4d;
-  --sombra-card: 0 2px 12px rgba(239, 91, 91, 0.08);
+  /* ---------- Marca: vermelho-sangue (matiz 22 — entre cereja e carmim) ---------- */
+  --red-50:  oklch(0.972 0.012 22);
+  --red-100: oklch(0.945 0.025 22);
+  --red-200: oklch(0.890 0.052 22);
+  --red-300: oklch(0.810 0.094 22);
+  --red-400: oklch(0.720 0.150 22);
+  --red-500: oklch(0.640 0.185 22);   /* primária */
+  --red-600: oklch(0.560 0.175 22);   /* primária escura */
+  --red-700: oklch(0.460 0.140 22);
+  --red-800: oklch(0.360 0.100 22);
+  --red-900: oklch(0.260 0.060 22);
+
+  /* ---------- Neutros tingidos (sutilmente puxados ao vermelho) ---------- */
+  --neutral-0:   oklch(1     0     0);                 /* branco puro reservado */
+  --neutral-50:  oklch(0.992 0.003 22);
+  --neutral-100: oklch(0.975 0.005 22);
+  --neutral-150: oklch(0.955 0.007 22);
+  --neutral-200: oklch(0.925 0.009 22);
+  --neutral-300: oklch(0.860 0.011 22);
+  --neutral-400: oklch(0.720 0.013 22);
+  --neutral-500: oklch(0.555 0.013 22);
+  --neutral-600: oklch(0.420 0.011 22);
+  --neutral-700: oklch(0.320 0.009 22);
+  --neutral-800: oklch(0.220 0.007 22);
+  --neutral-900: oklch(0.150 0.005 22);
+
+  /* ---------- Semânticas de estoque ---------- */
+  --critico: oklch(0.560 0.200 25);
+  --baixo:   oklch(0.660 0.165 55);
+  --normal:  oklch(0.620 0.130 150);
+  --alto:    oklch(0.490 0.120 155);
+
+  --critico-bg: oklch(0.940 0.045 25);
+  --baixo-bg:   oklch(0.950 0.040 65);
+  --normal-bg:  oklch(0.945 0.035 150);
+  --alto-bg:    oklch(0.935 0.035 155);
+
+  /* ---------- Papéis ---------- */
+  --bg:           var(--neutral-50);
+  --bg-soft:      var(--red-50);
+  --surface:      var(--neutral-0);
+  --surface-2:    var(--neutral-100);
+  --border:       var(--neutral-200);
+  --border-strong:var(--neutral-300);
+  --text:         var(--neutral-900);
+  --text-muted:   var(--neutral-500);
+  --text-soft:    var(--neutral-600);
+  --primary:      var(--red-500);
+  --primary-hover:var(--red-600);
+  --primary-soft: var(--red-100);
+  --on-primary:   var(--neutral-0);
+
+  /* ---------- Aliases legados (compatibilidade com componentes existentes) ---------- */
+  --cor-primaria:        var(--primary);
+  --cor-primaria-escura: var(--red-700);
+  --cor-primaria-clara:  var(--red-50);
+  --cor-fundo:           var(--bg);
+  --cor-fundo-suave:     var(--bg-soft);
+  --cor-texto:           var(--text);
+  --cor-texto-suave:     var(--text-soft);
+  --cor-borda:           var(--border);
+  --cor-borda-input:     var(--red-200);
+  --cor-critico:         var(--critico);
+  --cor-baixo:           var(--baixo);
+  --cor-normal:          var(--normal);
+  --cor-alto:            var(--alto);
+
+  /* ---------- Espaçamento (escala base 4) ---------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 56px;
+  --space-10: 72px;
+  --space-11: 96px;
+
+  /* ---------- Raios ---------- */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  /* ---------- Tipografia ---------- */
+  --font-display: 'Fraunces', 'Iowan Old Style', 'Apple Garamond', Georgia, serif;
+  --font-sans:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+  --font-mono:    ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+
+  /* escala 1.250 (major third) */
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 16px;
+  --text-md:   18px;
+  --text-lg:   22px;
+  --text-xl:   28px;
+  --text-2xl:  36px;
+  --text-3xl:  46px;
+  --text-4xl:  58px;
+  --text-5xl:  74px;
+
+  /* ---------- Elevação (sombras tingidas no matiz da marca) ---------- */
+  --shadow-sm: 0 1px 2px oklch(0.560 0.175 22 / 0.06);
+  --shadow:    0 2px 6px oklch(0.560 0.175 22 / 0.06),
+               0 1px 2px oklch(0.560 0.175 22 / 0.04);
+  --shadow-md: 0 8px 20px oklch(0.560 0.175 22 / 0.10),
+               0 2px 4px oklch(0.560 0.175 22 / 0.04);
+  --shadow-lg: 0 16px 40px oklch(0.560 0.175 22 / 0.16),
+               0 4px 8px oklch(0.560 0.175 22 / 0.06);
+  --shadow-glow: 0 0 0 4px oklch(0.640 0.185 22 / 0.18);
+
+  --sombra-card: var(--shadow);
+
+  /* ---------- Motion ---------- */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:    140ms;
+  --dur-base:    220ms;
+  --dur-slow:    420ms;
+
+  /* ---------- Layout ---------- */
+  --header-h: 68px;
+  --max-w-narrow: 720px;
+  --max-w-base:   1180px;
+  --max-w-wide:   1400px;
 }
 
-* { box-sizing: border-box; }
+/* ============================================================
+   Reset enxuto
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
 
 html, body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  color: var(--cor-texto);
-  background: var(--cor-fundo);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-h1, h2, h3, h4 { color: var(--cor-primaria-escura); }
+img, svg { display: block; max-width: 100%; }
 
-a { color: var(--cor-primaria); }
+button { font-family: inherit; }
 
-button {
-  font-family: inherit;
+a { color: var(--primary); text-decoration: none; }
+a:hover { color: var(--primary-hover); }
+
+::selection {
+  background: var(--red-200);
+  color: var(--red-900);
 }
 
-/* ===== Utilitarios reutilizaveis ===== */
+:where(input, select, textarea, button):focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--neutral-900);
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  margin: 0;
+  font-weight: 500;
+  font-variation-settings: 'opsz' 24, 'SOFT' 50;
+}
+
+h1 { font-size: var(--text-2xl); }
+h2 { font-size: var(--text-xl); }
+h3 { font-size: var(--text-md); font-family: var(--font-sans); font-weight: 600; letter-spacing: -0.005em; }
+h4 { font-size: var(--text-base); font-family: var(--font-sans); font-weight: 600; }
+
+p { margin: 0; }
+
+/* ============================================================
+   Containers
+   ============================================================ */
 .container {
-  max-width: 1200px;
+  max-width: var(--max-w-base);
   margin: 0 auto;
-  padding: 32px;
+  padding: var(--space-7) var(--space-6);
 }
 
 .container-narrow {
-  max-width: 720px;
+  max-width: var(--max-w-narrow);
   margin: 0 auto;
-  padding: 32px;
+  padding: var(--space-7) var(--space-6);
 }
 
+@media (max-width: 640px) {
+  .container,
+  .container-narrow { padding: var(--space-6) var(--space-4); }
+}
+
+/* ============================================================
+   Cards
+   ============================================================ */
 .card {
-  background: #fff;
-  border: 1px solid var(--cor-borda);
-  border-radius: 14px;
-  padding: 20px;
-  box-shadow: var(--sombra-card);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-flat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+}
+
+/* ============================================================
+   Botões
+   ============================================================ */
+.btn-primary,
+.btn-outline,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 12px 22px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out);
+  border: 1px solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
 }
 
 .btn-primary {
-  background: var(--cor-primaria);
-  color: #fff;
-  border: none;
-  padding: 12px 28px;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.15s, transform 0.1s;
+  background: var(--primary);
+  color: var(--on-primary);
+  box-shadow: var(--shadow-sm);
 }
-
-.btn-primary:hover:not(:disabled) { background: var(--cor-primaria-escura); }
-.btn-primary:active { transform: scale(0.98); }
-.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-hover);
+  color: var(--on-primary);
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
+}
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:disabled { opacity: 0.55; cursor: not-allowed; }
 
 .btn-outline {
-  background: #fff;
-  color: var(--cor-primaria);
-  border: 1px solid var(--cor-primaria);
-  padding: 12px 28px;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
+  background: var(--surface);
+  color: var(--primary);
+  border-color: var(--red-200);
+}
+.btn-outline:hover {
+  background: var(--bg-soft);
+  border-color: var(--red-300);
+  color: var(--primary-hover);
 }
 
-.btn-outline:hover { background: var(--cor-fundo-suave); }
+.btn-ghost {
+  background: transparent;
+  color: var(--text-soft);
+}
+.btn-ghost:hover {
+  background: var(--neutral-100);
+  color: var(--text);
+}
 
+.btn-block { width: 100%; }
+.btn-lg    { padding: 16px 28px; font-size: var(--text-base); }
+.btn-sm    { padding: 8px 14px; font-size: var(--text-xs); }
+
+/* ============================================================
+   Formulários
+   ============================================================ */
 .input,
-.select {
+.select,
+textarea.input {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--cor-borda-input);
-  border-radius: 10px;
-  font-size: 15px;
-  background: var(--cor-primaria-clara);
-  color: var(--cor-texto);
-  outline: none;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  background: var(--surface);
+  color: var(--text);
   font-family: inherit;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
 }
+
+.input::placeholder { color: var(--neutral-400); }
+
+.input:hover,
+.select:hover { border-color: var(--border-strong); }
 
 .input:focus,
 .select:focus {
-  border-color: var(--cor-primaria);
-  background: #fff;
+  border-color: var(--primary);
+  background: var(--surface);
+  outline: none;
+  box-shadow: var(--shadow-glow);
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23a08a8a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 40px;
 }
 
 .label {
   display: block;
-  margin-bottom: 6px;
-  color: var(--cor-primaria);
-  font-weight: 500;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-soft);
 }
 
-.campo { margin-bottom: 16px; }
+.campo { margin-bottom: var(--space-4); }
 
-.msg-erro { color: #b00020; margin-top: 8px; font-size: 14px; }
-.msg-sucesso { color: var(--cor-normal); margin-top: 8px; font-size: 14px; }
+.msg-erro,
+.msg-sucesso {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.msg-erro {
+  color: var(--critico);
+  background: var(--critico-bg);
+}
+
+.msg-sucesso {
+  color: var(--normal);
+  background: var(--normal-bg);
+}
+
+/* ============================================================
+   Utilitários
+   ============================================================ */
+.eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.muted { color: var(--text-muted); }
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  border: 0;
+  margin: var(--space-6) 0;
+}
+
+/* Pattern de fundo opcional: padrão sutil de gotas */
+.pattern-gotas {
+  background-image:
+    radial-gradient(circle at 20% 30%, oklch(1 0 0 / 0.06) 1px, transparent 1.6px),
+    radial-gradient(circle at 70% 75%, oklch(1 0 0 / 0.05) 1px, transparent 1.6px),
+    radial-gradient(circle at 45% 90%, oklch(1 0 0 / 0.04) 1px, transparent 1.6px);
+  background-size: 240px 240px, 320px 320px, 200px 200px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

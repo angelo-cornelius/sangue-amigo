@@ -1,53 +1,99 @@
-<section class="home-hero">
-  <div class="container">
+<section class="home-hero pattern-gotas">
+  <div class="container hero-inner">
     <div class="hero-top">
-      <span class="cidade">📍 {{ cidade() }}</span>
+      <span class="cidade">
+        <app-icon name="pin" [size]="14"/> {{ cidade() }}
+      </span>
     </div>
+
     <div class="hero-saudacao">
-      <h1>Olá,<br/><strong>{{ nome() }}</strong></h1>
-      <span class="tipo-badge">{{ tipoUsuario() }}</span>
+      <div class="saudacao-text">
+        <p class="cumprimento">Olá,</p>
+        <h1>{{ nome() }}</h1>
+      </div>
+
+      <div class="tipo-badge" [title]="'Seu tipo sanguíneo'">
+        <span class="tipo-label">Seu tipo</span>
+        <span class="tipo-valor">{{ tipoUsuario() }}</span>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="home-conteudo container">
+
   <div class="atalhos">
-    <a class="btn-primary atalho" routerLink="/elegibilidade">Doar</a>
-    <a class="btn-primary atalho" routerLink="/agendar">Agendar</a>
+    <a class="atalho atalho-primario" routerLink="/elegibilidade">
+      <span class="atalho-icone">
+        <app-icon name="drop-fill" [size]="22"/>
+      </span>
+      <span class="atalho-texto">
+        <strong>Doar agora</strong>
+        <small>Veja sua elegibilidade</small>
+      </span>
+      <app-icon name="arrow-right" [size]="18"/>
+    </a>
+
+    <a class="atalho atalho-secundario" routerLink="/agendar">
+      <span class="atalho-icone">
+        <app-icon name="calendar" [size]="22"/>
+      </span>
+      <span class="atalho-texto">
+        <strong>Agendar</strong>
+        <small>Escolha hemocentro e horário</small>
+      </span>
+      <app-icon name="arrow-right" [size]="18"/>
+    </a>
   </div>
 
   @if (tiposCriticos().length > 0) {
-    <div class="card alerta">
-      <h3>Estoque em estado crítico</h3>
-      <p>
-        Os estoques dos tipos sanguíneos
-        @for (t of tiposCriticos(); track t; let last = $last) {
-          <strong>{{ t }}</strong>@if (!last) {<span>, </span>}
-        }
-        estão em estado <strong>crítico</strong>. A doação de sangue é um processo
-        rápido e seguro. Se possível, procure um ponto de coleta ou agende sua doação.
-      </p>
+    <div class="alerta">
+      <div class="alerta-icone" aria-hidden="true">
+        <app-icon name="drop" [size]="22"/>
+      </div>
+      <div class="alerta-conteudo">
+        <h3>Estoque em estado crítico</h3>
+        <p>
+          Os tipos
+          @for (t of tiposCriticos(); track t; let last = $last) {
+            <span class="tag-tipo">{{ t }}</span>@if (!last) { <span class="vir">·</span> }
+          }
+          estão em nível <strong>crítico</strong> nos hemocentros próximos.
+          Se possível, procure um ponto de coleta ou agende sua doação.
+        </p>
+        <a routerLink="/hemocentros" class="alerta-link">Ver hemocentros <app-icon name="arrow-right" [size]="14"/></a>
+      </div>
     </div>
   }
 
-  @if (agendamentos().length === 0) {
-    <div class="card vazio">
-      <div class="icone">📅</div>
-      <h3>Nenhum agendamento ativo</h3>
-      <p>Você ainda não possui nenhuma doação agendada. Agende uma data para realizar sua próxima doação.</p>
-      <a routerLink="/agendar" class="btn-primary">Agendar</a>
+  <div class="bloco-agendamentos">
+    <div class="bloco-cabecalho">
+      <h2>Próximos agendamentos</h2>
+      <a routerLink="/agendamentos" class="ver-tudo">Ver todos <app-icon name="arrow-right" [size]="14"/></a>
     </div>
-  } @else {
-    <div class="card">
-      <h3>Próximos agendamentos</h3>
+
+    @if (agendamentos().length === 0) {
+      <div class="vazio">
+        <div class="vazio-arte">
+          <app-icon name="calendar" [size]="28"/>
+        </div>
+        <h3>Nenhum agendamento ativo</h3>
+        <p>Agende uma data para realizar sua próxima doação.</p>
+        <a routerLink="/agendar" class="btn-primary">Agendar agora</a>
+      </div>
+    } @else {
       <ul class="lista-agendamentos">
         @for (a of agendamentos(); track a.id) {
-          <li>
-            <strong>{{ a.nome_hospital }}</strong>
-            @if (a.data_hora) { <span> — {{ a.data_hora }}</span> }
+          <li class="ag-item">
+            <span class="ag-marca" aria-hidden="true"></span>
+            <div class="ag-info">
+              <strong>{{ a.nome_hospital }}</strong>
+              @if (a.data_hora) { <span class="ag-data">{{ a.data_hora }}</span> }
+            </div>
+            <app-icon name="chevron-right" [size]="18"/>
           </li>
         }
       </ul>
-    </div>
-  }
+    }
+  </div>
 </section>

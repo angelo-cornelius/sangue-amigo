@@ -6,10 +6,11 @@ import { SangueAmigoService } from '../../services/sangue-amigo';
 import { Hemocentro, EstoqueItem } from '../../models/hemocentro';
 import { Agendamento } from '../../models/agendamento';
 import { TipoSanguineo } from '../../models/doador';
+import { Icon } from '../shared/icon/icon';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink],
+  imports: [RouterLink, Icon],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

@@ -2,10 +2,11 @@ import { Component, inject, computed, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { SessaoService } from '../../services/sessao';
+import { Icon } from '../shared/icon/icon';
 
 @Component({
   selector: 'app-elegibilidade',
-  imports: [RouterLink],
+  imports: [RouterLink, Icon],
   templateUrl: './elegibilidade.html',
   styleUrl: './elegibilidade.css',
 })
@@ -44,7 +45,6 @@ export class Elegibilidade {
     return `Faltam ${restante} dia${restante === 1 ? '' : 's'} para sua próxima doação.`;
   });
 
-  // SVG circle props
   raio = 80;
   circunferencia = computed(() => 2 * Math.PI * this.raio);
   offset = computed(() => this.circunferencia() * (1 - this.percentual() / 100));

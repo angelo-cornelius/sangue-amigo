@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { SangueAmigoService } from '../../services/sangue-amigo';
 import { Hemocentro } from '../../models/hemocentro';
 import { TipoSanguineo, TIPOS_SANGUINEOS } from '../../models/doador';
+import { Icon } from '../shared/icon/icon';
 
 @Component({
   selector: 'app-hemocentros',
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, Icon],
   templateUrl: './hemocentros.html',
   styleUrl: './hemocentros.css',
 })

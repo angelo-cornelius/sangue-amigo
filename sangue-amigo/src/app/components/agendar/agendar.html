@@ -1,12 +1,16 @@
 <section class="container-narrow agendar">
-  <h1>Agendar doação</h1>
-  <p class="sub">Escolha o hemocentro e o horário desejado.</p>
+  <header class="agendar-head">
+    <span class="eyebrow">Agendar</span>
+    <h1>Vamos marcar sua doação.</h1>
+    <p class="sub">Selecione o hemocentro e o horário que melhor cabem no seu dia.</p>
+  </header>
 
-  <div class="card">
+  <form class="agendar-form" (ngSubmit)="agendar()" novalidate>
+
     <div class="campo">
-      <label class="label">Hemocentro</label>
-      <select class="select" [(ngModel)]="hemocentroSelecionado">
-        <option [ngValue]="null">Selecione...</option>
+      <label class="label" for="hemo">Hemocentro</label>
+      <select id="hemo" class="select" [(ngModel)]="hemocentroSelecionado" name="hemo">
+        <option [ngValue]="null">Selecione…</option>
         @for (h of hemocentros(); track h.id) {
           <option [ngValue]="h.id">{{ h.nome }} — {{ h.cidade }}/{{ h.estado }}</option>
         }
@@ -17,18 +21,22 @@
       <label class="label">Horário disponível</label>
       <div class="horarios">
         @for (h of horariosFixos; track h) {
-          <button type="button" class="horario-btn" [class.ativo]="horario === h" (click)="horario = h">
+          <button type="button"
+                  class="horario-btn"
+                  [class.ativo]="horario === h"
+                  (click)="horario = h">
+            <app-icon name="clock" [size]="16"/>
             {{ h }}
           </button>
         }
       </div>
     </div>
 
-    @if (erro()) { <p class="msg-erro">{{ erro() }}</p> }
-    @if (sucesso()) { <p class="msg-sucesso">{{ sucesso() }}</p> }
+    @if (erro()) { <p class="msg-erro" role="alert">{{ erro() }}</p> }
+    @if (sucesso()) { <p class="msg-sucesso" role="status">{{ sucesso() }}</p> }
 
-    <button class="btn-primary confirmar" (click)="agendar()" [disabled]="enviando()">
-      {{ enviando() ? 'Agendando...' : 'Confirmar agendamento' }}
+    <button class="btn-primary btn-lg btn-block" type="submit" [disabled]="enviando()">
+      {{ enviando() ? 'Agendando…' : 'Confirmar agendamento' }}
     </button>
-  </div>
+  </form>
 </section>

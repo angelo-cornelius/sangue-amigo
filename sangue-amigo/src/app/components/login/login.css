@@ -1,47 +1,136 @@
 .login-wrap {
   min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--bg);
+}
+
+/* ---------- Painel esquerdo (identidade) ---------- */
+.painel {
+  background:
+    radial-gradient(ellipse 70% 70% at 30% 20%, var(--red-500), transparent 60%),
+    linear-gradient(160deg, var(--red-600), var(--red-800));
+  color: #fff;
+  padding: var(--space-9) var(--space-8);
   display: flex;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+
+.painel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 90%, oklch(1 0 0 / 0.08), transparent 50%);
+  pointer-events: none;
+}
+
+.painel-conteudo { position: relative; max-width: 460px; }
+
+.badge-gota {
+  width: 64px;
+  height: 64px;
+  background: oklch(1 0 0 / 0.12);
+  border: 1.5px solid oklch(1 0 0 / 0.35);
+  border-radius: 18px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--cor-fundo-suave);
-  padding: 32px;
+  margin-bottom: var(--space-7);
 }
 
-.login-card {
-  background: #fff;
-  border-radius: 18px;
-  padding: 40px 48px;
-  box-shadow: var(--sombra-card);
+.painel-titulo {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4.4vw, 52px);
+  line-height: 1.05;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-5);
+  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+}
+
+.italico { font-style: italic; font-weight: 400; opacity: 0.95; }
+
+.painel-sub {
+  color: oklch(1 0 0 / 0.85);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  max-width: 38ch;
+}
+
+/* ---------- Painel direito (form) ---------- */
+.form-wrap {
+  padding: var(--space-7) var(--space-7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.voltar-home {
+  position: absolute;
+  top: var(--space-6);
+  left: var(--space-7);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-sm);
+  color: var(--text-soft);
+  font-weight: 500;
+}
+
+.voltar-home:hover { color: var(--primary); }
+
+.login-form {
   width: 100%;
-  max-width: 420px;
+  max-width: 380px;
+  margin: 0 auto;
+  animation: rise var(--dur-slow) var(--ease-out) both;
 }
 
-.login-card h1 {
-  margin: 0 0 4px;
-  font-size: 28px;
+.login-form h1 {
+  font-size: var(--text-2xl);
+  margin: var(--space-2) 0 var(--space-2);
 }
 
 .sub {
-  color: var(--cor-texto-suave);
-  margin: 0 0 28px;
-  font-size: 14px;
-}
-
-.login-btn {
-  width: 100%;
-  margin-top: 8px;
+  color: var(--text-soft);
+  margin-bottom: var(--space-7);
+  font-size: var(--text-sm);
 }
 
 .cad-link {
   text-align: center;
-  margin: 20px 0 0;
-  font-size: 14px;
-  color: var(--cor-texto-suave);
+  margin-top: var(--space-6);
+  font-size: var(--text-sm);
+  color: var(--text-soft);
 }
 
 .cad-link a {
-  color: var(--cor-primaria);
+  color: var(--primary);
   font-weight: 600;
-  text-decoration: none;
 }
 .cad-link a:hover { text-decoration: underline; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .login-wrap { grid-template-columns: 1fr; }
+  .painel {
+    padding: var(--space-7) var(--space-6);
+    min-height: 220px;
+    align-items: center;
+  }
+  .painel-conteudo { text-align: center; margin: 0 auto; }
+  .badge-gota { margin: 0 auto var(--space-5); display: flex; }
+  .painel-titulo { font-size: 28px; }
+  .painel-sub { display: none; }
+  .form-wrap { padding: var(--space-7) var(--space-4); }
+  .voltar-home { display: none; }
+}

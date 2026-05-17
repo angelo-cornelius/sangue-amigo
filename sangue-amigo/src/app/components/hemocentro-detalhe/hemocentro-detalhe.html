@@ -1,28 +1,50 @@
 <section class="container hemo-det">
-  <a class="voltar" routerLink="/hemocentros">‹ Voltar</a>
+  <a class="voltar" routerLink="/hemocentros">
+    <app-icon name="arrow-left" [size]="16"/> Hemocentros
+  </a>
 
-  @if (hemocentro()) {
-    <div class="card cabecalho">
-      <h1>{{ hemocentro()!.nome }}</h1>
-      <p class="endereco">{{ hemocentro()!.endereco }} — {{ hemocentro()!.cidade }}/{{ hemocentro()!.estado }}</p>
-      <p class="horario">⏰ {{ hemocentro()!.horario_funcionamento }}</p>
-    </div>
+  @if (hemocentro(); as h) {
+    <header class="cabecalho">
+      <div class="cabecalho-info">
+        <span class="eyebrow">Hemocentro</span>
+        <h1>{{ h.nome }}</h1>
+        <p class="endereco">
+          <app-icon name="pin" [size]="16"/>
+          {{ h.endereco }} — {{ h.cidade }}/{{ h.estado }}
+        </p>
+        <p class="horario">
+          <app-icon name="clock" [size]="16"/>
+          {{ h.horario_funcionamento }}
+        </p>
+      </div>
 
-    <div class="card">
-      <h3>Estoque atual</h3>
+      <a class="btn-primary btn-lg" routerLink="/agendar">
+        <app-icon name="calendar" [size]="18"/> Agendar aqui
+      </a>
+    </header>
+
+    <section class="bloco">
+      <div class="bloco-cab">
+        <h2>Estoque atual</h2>
+        <span class="atualizacao">Atualizado agora há pouco</span>
+      </div>
+
       <div class="estoque-grid">
-        @for (e of hemocentro()!.estoque ?? []; track e.tipo_sanguineo) {
-          <div class="estoque-item" [attr.data-nivel]="e.nivel">
-            <span class="tipo">{{ e.tipo_sanguineo }}</span>
-            <span class="unidades">{{ e.unidades_disponiveis }} un.</span>
-            <span class="nivel">{{ e.nivel }}</span>
-          </div>
+        @for (e of h.estoque ?? []; track e.tipo_sanguineo) {
+          <article class="estoque-item" [attr.data-nivel]="e.nivel">
+            <header>
+              <span class="tipo">{{ e.tipo_sanguineo }}</span>
+              <span class="nivel-pill">{{ e.nivel }}</span>
+            </header>
+            <p class="unidades"><strong>{{ e.unidades_disponiveis }}</strong> <span>unidades</span></p>
+            <div class="barra">
+              <div class="barra-preenchida" [style.width.%]="percentual(e.nivel)"></div>
+            </div>
+          </article>
         }
       </div>
-    </div>
-
-    <a class="btn-primary agendar" routerLink="/agendar">Agendar doação neste hemocentro</a>
+    </section>
   } @else {
-    <p>Carregando…</p>
+    <p class="carregando">Carregando…</p>
   }
 </section>

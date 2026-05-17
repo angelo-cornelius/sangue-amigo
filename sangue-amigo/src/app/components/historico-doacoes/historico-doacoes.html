@@ -1,36 +1,46 @@
-<section class="container-narrow">
-  <h1>Histórico de doações</h1>
+<section class="container-narrow hist">
+  <header class="hist-head">
+    <span class="eyebrow">Seu impacto</span>
+    <h1>Histórico de doações</h1>
+  </header>
 
-  <div class="card form-doacao">
+  <div class="form-doacao">
     <h3>Registrar nova doação</h3>
+    <p class="form-sub">Adicione uma doação realizada para manter seu histórico atualizado.</p>
+
     <div class="linha">
       <div class="campo">
-        <label class="label">Data da doação</label>
-        <input class="input" type="date" [(ngModel)]="dataNova" />
+        <label class="label" for="data">Data da doação</label>
+        <input id="data" class="input" type="date" name="data" [(ngModel)]="dataNova" />
       </div>
       <button class="btn-primary" (click)="registrar()" [disabled]="enviando()">
-        {{ enviando() ? 'Salvando...' : 'Registrar' }}
+        {{ enviando() ? 'Salvando…' : 'Registrar' }}
       </button>
     </div>
-    @if (erro()) { <p class="msg-erro">{{ erro() }}</p> }
-    @if (sucesso()) { <p class="msg-sucesso">{{ sucesso() }}</p> }
+
+    @if (erro()) { <p class="msg-erro" role="alert">{{ erro() }}</p> }
+    @if (sucesso()) { <p class="msg-sucesso" role="status">{{ sucesso() }}</p> }
   </div>
 
   @if (doacoes().length === 0) {
-    <div class="card vazio">
-      <p>Você ainda não registrou nenhuma doação.</p>
+    <div class="vazio">
+      <div class="vazio-arte"><app-icon name="drop" [size]="28"/></div>
+      <h3>Sem doações registradas</h3>
+      <p>Quando registrar sua primeira doação, ela aparecerá nesta linha do tempo.</p>
     </div>
   } @else {
-    <div class="lista">
+    <ol class="timeline">
       @for (d of doacoes(); track d.id) {
-        <div class="card item">
-          <div class="info">
+        <li class="entrada">
+          <span class="ponto" aria-hidden="true">
+            <app-icon name="drop-fill" [size]="14"/>
+          </span>
+          <div class="conteudo">
             <p class="data">{{ d.ultima_doacao }}</p>
-            <p class="tipo">Tipo: <strong>{{ d.tipo_sanguineo }}</strong></p>
+            <p class="tipo">Tipo <strong>{{ d.tipo_sanguineo }}</strong></p>
           </div>
-          <span class="icone">🩸</span>
-        </div>
+        </li>
       }
-    </div>
+    </ol>
   }
 </section>

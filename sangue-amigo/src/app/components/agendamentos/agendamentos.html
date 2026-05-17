@@ -1,27 +1,42 @@
 <section class="container-narrow">
   <div class="topo">
-    <h1>Meus agendamentos</h1>
-    <a routerLink="/agendar" class="btn-primary">+ Novo</a>
+    <div>
+      <span class="eyebrow">Agenda</span>
+      <h1>Meus agendamentos</h1>
+    </div>
+    <a routerLink="/agendar" class="btn-primary">
+      <app-icon name="plus" [size]="16"/> Novo
+    </a>
   </div>
 
   @if (agendamentos().length === 0) {
-    <div class="card vazio">
-      <div class="icone">📅</div>
-      <p>Você ainda não tem agendamentos.</p>
+    <div class="vazio">
+      <div class="vazio-arte">
+        <app-icon name="calendar" [size]="28"/>
+      </div>
+      <h3>Sem agendamentos por aqui</h3>
+      <p>Quando você marcar uma doação, ela aparecerá nesta lista.</p>
+      <a routerLink="/agendar" class="btn-primary">Agendar agora</a>
     </div>
   } @else {
-    <div class="lista">
+    <ul class="lista">
       @for (a of agendamentos(); track a.id) {
-        <div class="card item">
+        <li class="item">
+          <span class="marca" aria-hidden="true"></span>
           <div class="info">
             <h3>{{ a.nome_hospital }}</h3>
-            @if (a.data_hora) { <p class="data">📅 {{ a.data_hora }}</p> }
+            @if (a.data_hora) {
+              <p class="data">
+                <app-icon name="calendar" [size]="14"/>
+                {{ a.data_hora }}
+              </p>
+            }
           </div>
           <span class="status" [attr.data-status]="a.status ?? 'pendente'">
             {{ a.status ?? 'pendente' }}
           </span>
-        </div>
+        </li>
       }
-    </div>
+    </ul>
   }
 </section>

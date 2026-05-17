@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { SangueAmigoService } from '../../services/sangue-amigo';
 import { SessaoService } from '../../services/sessao';
 import { Doacao } from '../../models/doacao';
+import { Icon } from '../shared/icon/icon';
 
 @Component({
   selector: 'app-historico-doacoes',
-  imports: [FormsModule],
+  imports: [FormsModule, Icon],
   templateUrl: './historico-doacoes.html',
   styleUrl: './historico-doacoes.css',
 })

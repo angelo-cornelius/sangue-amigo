@@ -1,37 +1,66 @@
-.agendar h1 { margin: 0 0 4px; font-size: 28px; }
-.sub { color: var(--cor-texto-suave); margin: 0 0 20px; }
+.agendar-head {
+  text-align: center;
+  margin-bottom: var(--space-7);
+}
 
+.agendar-head h1 {
+  font-size: clamp(28px, 4vw, var(--text-2xl));
+  margin: var(--space-2) 0 var(--space-3);
+}
+
+.sub {
+  color: var(--text-soft);
+  max-width: 42ch;
+  margin: 0 auto;
+}
+
+.agendar-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Horários ---------- */
 .horarios {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: var(--space-3);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 560px) {
   .horarios { grid-template-columns: repeat(2, 1fr); }
 }
 
 .horario-btn {
-  background: var(--cor-primaria-clara);
-  color: var(--cor-primaria-escura);
-  border: 1px solid var(--cor-borda-input);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--surface);
+  color: var(--text-soft);
+  border: 1.5px solid var(--border);
   padding: 14px;
-  border-radius: 10px;
-  font-size: 16px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  transition: all var(--dur-fast) var(--ease-out);
+  font-family: inherit;
 }
 
-.horario-btn:hover { background: #f5d5d5; }
+.horario-btn:hover {
+  border-color: var(--red-300);
+  color: var(--primary);
+  background: var(--red-50);
+}
 
 .horario-btn.ativo {
-  background: var(--cor-primaria);
+  background: var(--primary);
   color: #fff;
-  border-color: var(--cor-primaria);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
 }
 
-.confirmar {
-  width: 100%;
-  margin-top: 12px;
-}
+.horario-btn.ativo app-icon { color: #fff; }

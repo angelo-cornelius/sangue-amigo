@@ -1,26 +1,52 @@
 <section class="login-wrap">
-  <div class="login-card">
-    <h1>Entrar</h1>
-    <p class="sub">Conectando doadores, salvando vidas.</p>
-
-    <div class="campo">
-      <label class="label">CPF</label>
-      <input class="input" type="text" [(ngModel)]="cpf" placeholder="000.000.000-00" />
+  <aside class="painel pattern-gotas" aria-hidden="true">
+    <div class="painel-conteudo">
+      <div class="badge-gota">
+        <svg viewBox="0 0 24 24" width="36" height="36">
+          <path d="M12 2.5c-3.2 4-5.5 6.9-5.5 10A5.5 5.5 0 0 0 17.5 12.5c0-3.1-2.3-6-5.5-10Z" fill="#fff"/>
+        </svg>
+      </div>
+      <h2 class="painel-titulo">
+        <span class="italico">Cada doação</span><br/>
+        é um gesto que continua.
+      </h2>
+      <p class="painel-sub">
+        Acompanhe o estoque dos hemocentros, agende sua próxima doação e veja o impacto que você causa.
+      </p>
     </div>
+  </aside>
 
-    <div class="campo">
-      <label class="label">Senha</label>
-      <input class="input" type="password" [(ngModel)]="senha" placeholder="••••••" />
-    </div>
+  <div class="form-wrap">
+    <a routerLink="/" class="voltar-home" aria-label="Voltar à página inicial">
+      <app-icon name="arrow-left" [size]="18"/> Voltar
+    </a>
 
-    @if (erro()) {
-      <p class="msg-erro">{{ erro() }}</p>
-    }
+    <form class="login-form" (ngSubmit)="entrar()" novalidate>
+      <span class="eyebrow">Acesso</span>
+      <h1>Bem-vindo de volta.</h1>
+      <p class="sub">Entre para continuar salvando vidas.</p>
 
-    <button class="btn-primary login-btn" (click)="entrar()">Entrar</button>
+      <div class="campo">
+        <label class="label" for="cpf">CPF</label>
+        <input id="cpf" class="input" type="text" [(ngModel)]="cpf" name="cpf"
+               autocomplete="username" placeholder="000.000.000-00" />
+      </div>
 
-    <p class="cad-link">
-      Ainda não tem conta? <a routerLink="/cadastro">Cadastre-se</a>
-    </p>
+      <div class="campo">
+        <label class="label" for="senha">Senha</label>
+        <input id="senha" class="input" type="password" [(ngModel)]="senha" name="senha"
+               autocomplete="current-password" placeholder="Sua senha" />
+      </div>
+
+      @if (erro()) {
+        <p class="msg-erro" role="alert">{{ erro() }}</p>
+      }
+
+      <button class="btn-primary btn-block btn-lg" type="submit">Entrar</button>
+
+      <p class="cad-link">
+        Ainda não tem conta? <a routerLink="/cadastro">Crie a sua</a>
+      </p>
+    </form>
   </div>
 </section>

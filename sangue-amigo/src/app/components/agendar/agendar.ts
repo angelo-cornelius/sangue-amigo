@@ -5,10 +5,11 @@ import { Router } from '@angular/router';
 import { SangueAmigoService } from '../../services/sangue-amigo';
 import { SessaoService } from '../../services/sessao';
 import { Hemocentro } from '../../models/hemocentro';
+import { Icon } from '../shared/icon/icon';
 
 @Component({
   selector: 'app-agendar',
-  imports: [FormsModule],
+  imports: [FormsModule, Icon],
   templateUrl: './agendar.html',
   styleUrl: './agendar.css',
 })

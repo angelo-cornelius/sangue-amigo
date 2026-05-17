@@ -1,21 +1,29 @@
-<section class="container-narrow">
-  <h1>Notificações</h1>
+<section class="container-narrow notif">
+  <header class="notif-head">
+    <span class="eyebrow">Inbox</span>
+    <h1>Notificações</h1>
+  </header>
 
   @if (notificacoes().length === 0) {
-    <div class="card vazio">
-      <p>Não há notificações.</p>
+    <div class="vazio">
+      <div class="vazio-arte"><app-icon name="bell" [size]="28"/></div>
+      <h3>Nada por aqui</h3>
+      <p>Quando houver novidades, você verá nesta tela.</p>
     </div>
   } @else {
-    <div class="lista">
+    <ul class="lista">
       @for (n of notificacoes(); track n.id) {
-        <div class="card item" [class.lida]="n.lida">
+        <li class="item" [class.lida]="n.lida">
+          <span class="icone" aria-hidden="true">
+            <app-icon name="bell" [size]="18"/>
+          </span>
           <div class="info">
             <p class="data">{{ n.data }}</p>
             <p class="titulo">{{ n.titulo }}</p>
           </div>
           @if (!n.lida) { <span class="dot" aria-label="Não lida"></span> }
-        </div>
+        </li>
       }
-    </div>
+    </ul>
   }
 </section>

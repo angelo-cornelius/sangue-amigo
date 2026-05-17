@@ -1,28 +1,57 @@
-<header class="header">
-  <a class="logo" routerLink="/home">
-    <span class="logo-icon">🩸</span>
-    <span class="logo-text">Sangue Amigo</span>
+<header class="header" [class.menu-aberto]="menuAberto()">
+  <a class="logo" routerLink="/home" aria-label="Sangue Amigo — ir para a Home">
+    <span class="logo-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22">
+        <path d="M12 2.5c-3.2 4-5.5 6.9-5.5 10A5.5 5.5 0 0 0 17.5 12.5c0-3.1-2.3-6-5.5-10Z"
+              fill="currentColor"/>
+      </svg>
+    </span>
+    <span class="logo-text">Sangue<span class="logo-em">Amigo</span></span>
   </a>
 
-  <nav class="nav">
-    <a routerLink="/home" routerLinkActive="active">Início</a>
-    <a routerLink="/hemocentros" routerLinkActive="active">Hemocentros</a>
-    <a routerLink="/agendar" routerLinkActive="active">Agendar</a>
-    <a routerLink="/agendamentos" routerLinkActive="active">Agendamentos</a>
-    <a routerLink="/doacoes" routerLinkActive="active">Doações</a>
-    <a routerLink="/notificacoes" routerLinkActive="active">Notificações</a>
+  <button
+    class="menu-toggle"
+    type="button"
+    (click)="alternarMenu()"
+    [attr.aria-expanded]="menuAberto()"
+    aria-label="Abrir menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+  <nav class="nav" [class.aberto]="menuAberto()">
+    <a routerLink="/home" routerLinkActive="ativo">
+      <app-icon name="home" [size]="18"/> <span>Início</span>
+    </a>
+    <a routerLink="/hemocentros" routerLinkActive="ativo">
+      <app-icon name="pin" [size]="18"/> <span>Hemocentros</span>
+    </a>
+    <a routerLink="/agendar" routerLinkActive="ativo">
+      <app-icon name="plus" [size]="18"/> <span>Agendar</span>
+    </a>
+    <a routerLink="/agendamentos" routerLinkActive="ativo">
+      <app-icon name="calendar" [size]="18"/> <span>Agendamentos</span>
+    </a>
+    <a routerLink="/doacoes" routerLinkActive="ativo">
+      <app-icon name="history" [size]="18"/> <span>Doações</span>
+    </a>
+    <a routerLink="/notificacoes" routerLinkActive="ativo">
+      <app-icon name="bell" [size]="18"/> <span>Notificações</span>
+    </a>
   </nav>
 
   <div class="perfil-area">
     @if (sessao.logado()) {
-      <span class="perfil-nome">{{ sessao.usuario()?.nome }}</span>
-      <a routerLink="/perfil" class="perfil-icon" title="Meu perfil" aria-label="Meu perfil">
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-          <circle cx="12" cy="8" r="4" fill="currentColor"/>
-          <path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="currentColor"/>
-        </svg>
+      <a routerLink="/perfil" class="perfil-link" title="Meu perfil">
+        <span class="avatar" aria-hidden="true">
+          <app-icon name="user" [size]="18"/>
+        </span>
+        <span class="perfil-nome">{{ sessao.usuario()?.nome }}</span>
       </a>
-      <button class="sair-btn" (click)="sair()">Sair</button>
+      <button class="sair-btn" (click)="sair()" title="Sair" aria-label="Sair">
+        <app-icon name="logout" [size]="18"/>
+      </button>
     } @else {
       <a routerLink="/login" class="entrar-link">Entrar</a>
     }

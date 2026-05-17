@@ -4,10 +4,11 @@ import { RouterLink } from '@angular/router';
 import { SangueAmigoService } from '../../services/sangue-amigo';
 import { SessaoService } from '../../services/sessao';
 import { Agendamento } from '../../models/agendamento';
+import { Icon } from '../shared/icon/icon';
 
 @Component({
   selector: 'app-agendamentos',
-  imports: [RouterLink],
+  imports: [RouterLink, Icon],
   templateUrl: './agendamentos.html',
   styleUrl: './agendamentos.css',
 })

@@ -1,27 +1,45 @@
 <section class="container-narrow eleg">
-  <h1>Elegibilidade para doação</h1>
-  <p class="sub">Acompanhe quanto falta para você poder doar novamente.</p>
+  <header class="eleg-head">
+    <span class="eyebrow">Elegibilidade</span>
+    <h1>Quanto falta para sua próxima doação?</h1>
+    <p class="sub">O intervalo seguro entre doações é definido pelo Ministério da Saúde.</p>
+  </header>
 
-  <div class="grafico card">
-    <svg viewBox="0 0 200 200" class="ring">
+  <div class="grafico">
+    <svg viewBox="0 0 200 200" class="ring" aria-hidden="true">
+      <defs>
+        <linearGradient id="grad-eleg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"  stop-color="var(--red-400)"/>
+          <stop offset="100%" stop-color="var(--red-700)"/>
+        </linearGradient>
+      </defs>
       <circle cx="100" cy="100" [attr.r]="raio"
-              fill="none" stroke="var(--cor-primaria-clara)" stroke-width="14" />
+              fill="none" stroke="var(--red-50)" stroke-width="14"/>
       <circle cx="100" cy="100" [attr.r]="raio"
-              fill="none" stroke="var(--cor-primaria)" stroke-width="14"
+              fill="none" stroke="url(#grad-eleg)" stroke-width="14"
               stroke-linecap="round"
               [attr.stroke-dasharray]="circunferencia()"
               [attr.stroke-dashoffset]="offset()"
-              transform="rotate(-90 100 100)" />
-      <text x="100" y="100" text-anchor="middle" dominant-baseline="central"
-            class="ring-percent">{{ percentual() }}%</text>
+              transform="rotate(-90 100 100)"
+              style="transition: stroke-dashoffset .8s cubic-bezier(0.22, 1, 0.36, 1)"/>
     </svg>
 
-    <p class="status" [class.ok]="elegivel()">{{ mensagem() }}</p>
+    <div class="ring-overlay">
+      <span class="percent">{{ percentual() }}<span class="sym">%</span></span>
+      <span class="legenda">do intervalo concluído</span>
+    </div>
+  </div>
 
+  <div class="status-bloco" [class.ok]="elegivel()">
+    <app-icon [name]="elegivel() ? 'check' : 'clock'" [size]="20"/>
+    <p>{{ mensagem() }}</p>
+  </div>
+
+  <div class="acoes">
     @if (elegivel()) {
-      <a class="btn-primary" routerLink="/agendar">Agendar doação</a>
+      <a class="btn-primary btn-lg btn-block" routerLink="/agendar">Agendar minha doação</a>
     } @else {
-      <a class="btn-outline" routerLink="/home">Voltar à Home</a>
+      <a class="btn-outline btn-block" routerLink="/home">Voltar à Home</a>
     }
   </div>
 </section>

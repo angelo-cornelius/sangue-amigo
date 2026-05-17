@@ -5,10 +5,11 @@ import { Router, RouterLink } from '@angular/router';
 import { SangueAmigoService } from '../../services/sangue-amigo';
 import { SessaoService } from '../../services/sessao';
 import { Doador, TipoSanguineo, TIPOS_SANGUINEOS, Sexo } from '../../models/doador';
+import { Icon } from '../shared/icon/icon';
 
 @Component({
   selector: 'app-cadastro-doador',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, Icon],
   templateUrl: './cadastro-doador.html',
   styleUrl: './cadastro-doador.css',
 })
