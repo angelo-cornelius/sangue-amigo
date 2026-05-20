@@ -2,6 +2,7 @@ import { Component, inject, computed } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map, startWith } from 'rxjs/operators';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 
 import { Header } from './components/shared/header/header';
 
@@ -23,8 +24,15 @@ export class App {
     { initialValue: this.router.url }
   );
 
+  title = 'sangue-amigo';
+
+  constructor() {
+    injectSpeedInsights();
+  }
+
   mostrarHeader = computed(() => {
     const url = this.urlAtual();
     return url !== '/' && !url.startsWith('/login') && !url.startsWith('/cadastro');
   });
 }
+
