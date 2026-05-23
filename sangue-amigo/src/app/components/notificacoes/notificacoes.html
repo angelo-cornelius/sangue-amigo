@@ -6,7 +6,7 @@
 
   @if (notificacoes().length === 0) {
     <div class="vazio">
-      <div class="vazio-arte"><app-icon name="bell" [size]="28"/></div>
+      <app-empty-anim variant="sino"/>
       <h3>Nada por aqui</h3>
       <p>Quando houver novidades, você verá nesta tela.</p>
     </div>
@@ -21,7 +21,10 @@
             <p class="data">{{ n.data }}</p>
             <p class="titulo">{{ n.titulo }}</p>
           </div>
-          @if (!n.lida) { <span class="dot" aria-label="Não lida"></span> }
+          @if (!n.lida) {
+            <span class="dot" aria-hidden="true"></span>
+            <span class="visually-hidden">Não lida</span>
+          }
         </li>
       }
     </ul>

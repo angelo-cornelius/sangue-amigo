@@ -4,7 +4,7 @@ import { Landing } from './components/landing/landing';
 import { Login } from './components/login/login';
 import { CadastroDoador } from './components/cadastro-doador/cadastro-doador';
 import { Home } from './components/home/home';
-import { Elegibilidade } from './components/elegibilidade/elegibilidade';
+import { Distancia } from './components/distancia/distancia';
 import { Hemocentros } from './components/hemocentros/hemocentros';
 import { HemocentroDetalhe } from './components/hemocentro-detalhe/hemocentro-detalhe';
 import { Agendar } from './components/agendar/agendar';
@@ -18,7 +18,7 @@ export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'cadastro', component: CadastroDoador },
   { path: 'home', component: Home },
-  { path: 'elegibilidade', component: Elegibilidade },
+  { path: 'distancia', component: Distancia },
   { path: 'hemocentros', component: Hemocentros },
   { path: 'hemocentros/:id', component: HemocentroDetalhe },
   { path: 'agendar', component: Agendar },

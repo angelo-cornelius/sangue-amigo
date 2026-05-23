@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { Icon } from '../shared/icon/icon';
+import { EmptyAnim } from '../shared/empty-anim/empty-anim';
 
 interface Notificacao {
   id: number;
@@ -10,7 +11,7 @@ interface Notificacao {
 
 @Component({
   selector: 'app-notificacoes',
-  imports: [Icon],
+  imports: [Icon, EmptyAnim],
   templateUrl: './notificacoes.html',
   styleUrl: './notificacoes.css',
 })

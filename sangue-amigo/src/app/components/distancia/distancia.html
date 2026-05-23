@@ -1,0 +1,66 @@
+<section class="container-narrow dist">
+  <a class="voltar" routerLink="/home">
+    <app-icon name="arrow-left" [size]="16"/> Voltar
+  </a>
+
+  <header class="dist-head">
+    <span class="eyebrow">Encontrar hemocentro</span>
+    <h1>Selecione a distância máxima</h1>
+    <p class="sub">Arraste o ponto pela circunferência ou use os botões para ajustar.</p>
+  </header>
+
+  <div class="seletor-wrap">
+    <svg
+      #svgRef
+      class="seletor"
+      viewBox="0 0 320 320"
+      (pointerdown)="onPointerDown($event)"
+      (pointermove)="onPointerMove($event)"
+      (pointerup)="onPointerUp($event)"
+      (pointercancel)="onPointerUp($event)">
+
+      <circle
+        [attr.cx]="centro" [attr.cy]="centro" [attr.r]="raio"
+        fill="none"
+        stroke="var(--red-100)"
+        stroke-width="14"
+        stroke-linecap="round"
+        [attr.stroke-dasharray]="arcoBackgroundDash"
+        [attr.transform]="rotacaoArco"/>
+
+      <circle
+        [attr.cx]="centro" [attr.cy]="centro" [attr.r]="raio"
+        fill="none"
+        stroke="var(--primary)"
+        stroke-width="14"
+        stroke-linecap="round"
+        [attr.stroke-dasharray]="arcoActiveDash()"
+        [attr.transform]="rotacaoArco"/>
+
+      <g class="centro-info" text-anchor="middle" pointer-events="none">
+        <text [attr.x]="centro" y="155" class="num-svg">{{ km() }}</text>
+        <text [attr.x]="centro" y="195" class="un-svg">km</text>
+      </g>
+
+      <circle
+        [attr.cx]="posicaoThumb().x"
+        [attr.cy]="posicaoThumb().y"
+        r="18"
+        fill="#fff"
+        stroke="var(--primary)"
+        stroke-width="6"
+        class="thumb"
+        [class.dragging]="arrastando()"/>
+    </svg>
+  </div>
+
+  <div class="botoes-passo">
+    <button type="button" class="step-btn" (click)="ajustar(-1)" [disabled]="km() <= minKm" aria-label="Diminuir 1 km">−</button>
+    <span class="step-info">{{ minKm }} a {{ maxKm }} km</span>
+    <button type="button" class="step-btn" (click)="ajustar(1)" [disabled]="km() >= maxKm" aria-label="Aumentar 1 km">+</button>
+  </div>
+
+  <button class="btn-primary btn-lg btn-block" (click)="confirmar()">
+    Buscar hemocentros até {{ km() }} km
+  </button>
+</section>

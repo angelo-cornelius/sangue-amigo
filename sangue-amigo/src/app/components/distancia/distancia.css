@@ -1,0 +1,120 @@
+.voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-soft);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-5);
+}
+.voltar:hover { color: var(--primary); }
+
+.dist-head {
+  text-align: center;
+  margin-bottom: var(--space-7);
+}
+
+.dist-head .eyebrow { display: inline-block; margin-bottom: var(--space-3); }
+
+.dist-head h1 {
+  font-size: clamp(24px, 3.4vw, 30px);
+  max-width: 26ch;
+  margin: 0 auto var(--space-3);
+  line-height: 1.25;
+  color: var(--neutral-900);
+}
+
+.sub {
+  color: var(--text-soft);
+  max-width: 40ch;
+  margin: 0 auto;
+  font-size: var(--text-sm);
+}
+
+/* ---------- Seletor circular ---------- */
+.seletor-wrap {
+  width: 340px;
+  max-width: 100%;
+  margin: var(--space-4) auto var(--space-6);
+  aspect-ratio: 1;
+  position: relative;
+}
+
+.seletor {
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: pointer;
+  display: block;
+}
+
+/* Texto SVG no centro */
+.num-svg {
+  font-family: var(--font-sans);
+  font-size: 76px;
+  font-weight: 800;
+  fill: var(--primary);
+  letter-spacing: -0.04em;
+}
+
+.un-svg {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 600;
+  fill: var(--primary);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.thumb {
+  filter: drop-shadow(0 6px 14px oklch(0.560 0.175 22 / 0.45));
+  cursor: grab;
+  transition: r 140ms var(--ease-out), stroke-width 140ms var(--ease-out);
+}
+.thumb.dragging { cursor: grabbing; }
+.seletor:hover .thumb,
+.thumb.dragging { r: 20; stroke-width: 7; }
+
+/* ---------- Botões passo ---------- */
+.botoes-passo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  margin-bottom: var(--space-7);
+}
+
+.step-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--red-200);
+  background: var(--surface);
+  color: var(--primary);
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out);
+}
+
+.step-btn:hover:not(:disabled) {
+  background: var(--bg-soft);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.step-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.step-info {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--text-muted);
+}

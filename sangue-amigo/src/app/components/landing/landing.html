@@ -1,34 +1,103 @@
-<section class="landing pattern-gotas">
-  <div class="aura"></div>
+<section class="landing">
+  <div class="orb orb-1" aria-hidden="true"></div>
+  <div class="orb orb-2" aria-hidden="true"></div>
+  <div class="orb orb-3" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
 
-  <div class="landing-content">
-    <header class="brand">
-      <div class="gota" aria-hidden="true">
-        <svg viewBox="0 0 100 130" width="96" height="124">
-          <path d="M50 5 C 20 50, 10 80, 25 105 C 35 122, 65 122, 75 105 C 90 80, 80 50, 50 5 Z" fill="#fff"/>
-          <ellipse cx="56" cy="78" rx="9" ry="11" fill="var(--primary)" opacity="0.92"/>
-          <ellipse cx="40" cy="50" rx="6" ry="9" fill="#fff" opacity="0.55"/>
-        </svg>
+  <div class="landing-grid">
+    <div class="coluna-visual">
+      <svg class="hero-anim" viewBox="0 0 360 360" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="auraGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fff" stop-opacity="0.35"/>
+            <stop offset="55%" stop-color="#fff" stop-opacity="0.08"/>
+            <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="dropGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="100%" stop-color="#ffd6d6"/>
+          </linearGradient>
+          <radialGradient id="heartHi" cx="35%" cy="30%" r="60%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="100%" stop-color="#ffe9e9"/>
+          </radialGradient>
+        </defs>
+
+        <circle class="aura" cx="180" cy="195" r="135" fill="url(#auraGrad)"/>
+
+        <circle class="onda onda-1" cx="180" cy="195" r="55" fill="none" stroke="#fff" stroke-width="1.4" stroke-opacity="0.7"/>
+        <circle class="onda onda-2" cx="180" cy="195" r="55" fill="none" stroke="#fff" stroke-width="1.4" stroke-opacity="0.7"/>
+        <circle class="onda onda-3" cx="180" cy="195" r="55" fill="none" stroke="#fff" stroke-width="1.4" stroke-opacity="0.7"/>
+
+        <g class="gota gota-1">
+          <path d="M0,-14 C-9,2 -13,15 -7,23 C-3,28 3,28 7,23 C13,15 9,2 0,-14 Z" fill="url(#dropGrad)"/>
+        </g>
+        <g class="gota gota-2">
+          <path d="M0,-12 C-8,2 -11,12 -6,19 C-2,23 2,23 6,19 C11,12 8,2 0,-12 Z" fill="url(#dropGrad)"/>
+        </g>
+        <g class="gota gota-3">
+          <path d="M0,-10 C-6,2 -9,10 -4,16 C-1,19 1,19 4,16 C9,10 6,2 0,-10 Z" fill="url(#dropGrad)"/>
+        </g>
+
+        <g class="coracao">
+          <path
+            d="M180,250 C 125,215 85,180 85,140 C85,118 102,100 124,100 C148,100 167,116 180,138 C193,116 212,100 236,100 C258,100 275,118 275,140 C275,180 235,215 180,250 Z"
+            fill="url(#heartHi)"/>
+          <ellipse cx="155" cy="125" rx="11" ry="16" fill="#fff" opacity="0.55"/>
+        </g>
+
+        <circle class="particula p1" cx="70"  cy="80"  r="2.5" fill="#fff"/>
+        <circle class="particula p2" cx="295" cy="115" r="3"   fill="#fff"/>
+        <circle class="particula p3" cx="55"  cy="245" r="2"   fill="#fff"/>
+        <circle class="particula p4" cx="310" cy="265" r="2.5" fill="#fff"/>
+        <circle class="particula p5" cx="180" cy="45"  r="2"   fill="#fff"/>
+        <circle class="particula p6" cx="265" cy="55"  r="1.5" fill="#fff"/>
+      </svg>
+    </div>
+
+    <div class="coluna-texto">
+      <span class="badge">Doação de sangue</span>
+      <h1 class="titulo">Sangue<br/>Amigo</h1>
+      <p class="tagline">
+        Conectando doadores ao hemocentro mais próximo.<br/>
+        <strong>Uma doação pode salvar até quatro vidas.</strong>
+      </p>
+
+      <div class="acoes">
+        <a routerLink="/cadastro" class="btn-cta">
+          Doar pela primeira vez
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a routerLink="/login" class="btn-ghost-light">Já tenho conta</a>
       </div>
 
-      <h1 class="titulo">
-        <span class="linha-1">Sangue</span>
-        <span class="linha-2">Amigo</span>
-      </h1>
-
-      <p class="subtitulo">Conectando doadores, salvando vidas.</p>
-    </header>
-
-    <div class="acoes">
-      <a routerLink="/login" class="btn-entrar">Entrar</a>
-      <a routerLink="/cadastro" class="btn-cadastrar">Criar conta</a>
-    </div>
-
-    <div class="rodape">
-      <span class="rodape-stat">
-        <strong>1 doação</strong>
-        <span>pode salvar até 4 vidas</span>
-      </span>
+      <ul class="features">
+        <li>
+          <span class="f-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+          <span>Doação em <strong>10&nbsp;min</strong></span>
+        </li>
+        <li>
+          <span class="f-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12Z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+          </span>
+          <span>Hemocentros <strong>próximos</strong></span>
+        </li>
+        <li>
+          <span class="f-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </span>
+          <span>Acompanhe seu <strong>impacto</strong></span>
+        </li>
+      </ul>
     </div>
   </div>
+
+  <svg class="wave-bottom" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,60 Q360,10 720,60 T1440,60 V120 H0 Z" fill="#fff" fill-opacity="0.05"/>
+    <path d="M0,80 Q360,40 720,80 T1440,80 V120 H0 Z" fill="#fff" fill-opacity="0.04"/>
+  </svg>
 </section>

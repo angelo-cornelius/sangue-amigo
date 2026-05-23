@@ -11,9 +11,7 @@
 
   @if (agendamentos().length === 0) {
     <div class="vazio">
-      <div class="vazio-arte">
-        <app-icon name="calendar" [size]="28"/>
-      </div>
+      <app-empty-anim variant="calendario"/>
       <h3>Sem agendamentos por aqui</h3>
       <p>Quando você marcar uma doação, ela aparecerá nesta lista.</p>
       <a routerLink="/agendar" class="btn-primary">Agendar agora</a>

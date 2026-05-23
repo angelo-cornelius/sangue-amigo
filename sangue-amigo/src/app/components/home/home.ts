@@ -7,10 +7,11 @@ import { Hemocentro, EstoqueItem } from '../../models/hemocentro';
 import { Agendamento } from '../../models/agendamento';
 import { TipoSanguineo } from '../../models/doador';
 import { Icon } from '../shared/icon/icon';
+import { EmptyAnim } from '../shared/empty-anim/empty-anim';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, Icon],
+  imports: [RouterLink, Icon, EmptyAnim],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

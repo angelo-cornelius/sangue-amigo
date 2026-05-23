@@ -23,13 +23,13 @@
 <section class="home-conteudo container">
 
   <div class="atalhos">
-    <a class="atalho atalho-primario" routerLink="/elegibilidade">
+    <a class="atalho atalho-primario" routerLink="/distancia">
       <span class="atalho-icone">
         <app-icon name="drop-fill" [size]="22"/>
       </span>
       <span class="atalho-texto">
         <strong>Doar agora</strong>
-        <small>Veja sua elegibilidade</small>
+        <small>Encontre um hemocentro próximo</small>
       </span>
       <app-icon name="arrow-right" [size]="18"/>
     </a>
@@ -74,9 +74,7 @@
 
     @if (agendamentos().length === 0) {
       <div class="vazio">
-        <div class="vazio-arte">
-          <app-icon name="calendar" [size]="28"/>
-        </div>
+        <app-empty-anim variant="calendario"/>
         <h3>Nenhum agendamento ativo</h3>
         <p>Agende uma data para realizar sua próxima doação.</p>
         <a routerLink="/agendar" class="btn-primary">Agendar agora</a>

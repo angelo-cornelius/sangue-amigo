@@ -5,41 +5,43 @@
       <h1>Hemocentros próximos</h1>
       <p class="sub">Encontre o ponto de coleta mais perto de você.</p>
     </div>
+    @if (distanciaMax() !== null) {
+      <span class="distancia-tag">Até {{ distanciaMax() }} km</span>
+    }
   </header>
 
   <div class="filtros">
     <div class="busca">
+      <label class="visually-hidden" for="busca-cidade">Buscar por cidade</label>
       <app-icon name="search" [size]="18"/>
-      <input class="busca-input" type="text" placeholder="Buscar por cidade"
+      <input id="busca-cidade" class="busca-input" type="text" placeholder="Buscar por cidade"
              [ngModel]="filtroCidade()" (ngModelChange)="filtroCidade.set($event)" />
     </div>
 
     <div class="filtro-tipos">
-      <span class="filtro-label">Filtrar por tipo</span>
-      <div class="chips">
-        <button class="chip" [class.ativo]="filtroTipo() === ''" (click)="selecionarTipo('')">Todos</button>
+      <span class="filtro-label" id="filtro-tipo-label">Filtrar por tipo</span>
+      <div class="chips" role="radiogroup" aria-labelledby="filtro-tipo-label">
+        <button class="chip" role="radio" [attr.aria-checked]="filtroTipo() === ''"
+                [class.ativo]="filtroTipo() === ''" (click)="selecionarTipo('')">Todos</button>
         @for (t of tipos; track t) {
-          <button class="chip" [class.ativo]="filtroTipo() === t" (click)="selecionarTipo(t)">{{ t }}</button>
+          <button class="chip" role="radio" [attr.aria-checked]="filtroTipo() === t"
+                  [class.ativo]="filtroTipo() === t" (click)="selecionarTipo(t)">{{ t }}</button>
         }
       </div>
     </div>
   </div>
 
   <div class="layout">
-    <aside class="mapa-placeholder">
-      <div class="mapa-inner">
-        <div class="mapa-icone">
-          <app-icon name="map" [size]="28"/>
-        </div>
-        <h3>Mapa em breve</h3>
-        <p>A visualização cartográfica dos hemocentros chega em uma próxima versão.</p>
-      </div>
+    <aside class="mapa-area">
+      <app-mapa-hemocentros [hemocentros]="filtrados()"/>
     </aside>
 
     <div class="lista">
       @if (filtrados().length === 0) {
         <div class="vazio">
-          <p>Nenhum hemocentro encontrado com os filtros atuais.</p>
+          <app-empty-anim variant="busca"/>
+          <h3>Nenhum hemocentro encontrado</h3>
+          <p>Ajuste os filtros para ver mais resultados.</p>
         </div>
       }
 

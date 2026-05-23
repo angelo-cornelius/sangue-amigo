@@ -18,11 +18,13 @@
     </div>
 
     <div class="campo">
-      <label class="label">Horário disponível</label>
-      <div class="horarios">
+      <span class="label" id="horario-label">Horário disponível</span>
+      <div class="horarios" role="radiogroup" aria-labelledby="horario-label">
         @for (h of horariosFixos; track h) {
           <button type="button"
                   class="horario-btn"
+                  role="radio"
+                  [attr.aria-checked]="horario === h"
                   [class.ativo]="horario === h"
                   (click)="horario = h">
             <app-icon name="clock" [size]="16"/>

@@ -5,10 +5,11 @@ import { SangueAmigoService } from '../../services/sangue-amigo';
 import { SessaoService } from '../../services/sessao';
 import { Doacao } from '../../models/doacao';
 import { Icon } from '../shared/icon/icon';
+import { EmptyAnim } from '../shared/empty-anim/empty-anim';
 
 @Component({
   selector: 'app-historico-doacoes',
-  imports: [FormsModule, Icon],
+  imports: [FormsModule, Icon, EmptyAnim],
   templateUrl: './historico-doacoes.html',
   styleUrl: './historico-doacoes.css',
 })

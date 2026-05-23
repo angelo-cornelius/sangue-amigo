@@ -77,11 +77,13 @@
 
         <div class="grid">
           <div class="campo col-2">
-            <label class="label">Tipo sanguíneo *</label>
-            <div class="tipos">
+            <span class="label" id="tipo-sanguineo-label">Tipo sanguíneo *</span>
+            <div class="tipos" role="radiogroup" aria-labelledby="tipo-sanguineo-label">
               @for (t of tipos; track t) {
                 <button type="button"
                         class="tipo-chip"
+                        role="radio"
+                        [attr.aria-checked]="tipo_sanguineo === t"
                         [class.ativo]="tipo_sanguineo === t"
                         (click)="tipo_sanguineo = t">
                   {{ t }}

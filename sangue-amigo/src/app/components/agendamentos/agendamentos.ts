@@ -5,10 +5,11 @@ import { SangueAmigoService } from '../../services/sangue-amigo';
 import { SessaoService } from '../../services/sessao';
 import { Agendamento } from '../../models/agendamento';
 import { Icon } from '../shared/icon/icon';
+import { EmptyAnim } from '../shared/empty-anim/empty-anim';
 
 @Component({
   selector: 'app-agendamentos',
-  imports: [RouterLink, Icon],
+  imports: [RouterLink, Icon, EmptyAnim],
   templateUrl: './agendamentos.html',
   styleUrl: './agendamentos.css',
 })

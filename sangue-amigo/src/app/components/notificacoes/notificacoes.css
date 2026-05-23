@@ -43,7 +43,9 @@
   padding: var(--space-4) var(--space-5);
 }
 
-.item.lida { opacity: 0.6; }
+.item.lida { background: var(--neutral-100); border-color: var(--border); }
+.item.lida .titulo { color: var(--text-soft); font-weight: 500; }
+.item.lida .icone { background: var(--neutral-150); color: var(--text-soft); }
 
 .icone {
   width: 38px;
@@ -61,11 +63,11 @@
 
 .data {
   margin: 0 0 2px;
-  font-size: 11px;
-  color: var(--text-muted);
+  font-size: 12px;
+  color: var(--text-soft);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .titulo {
