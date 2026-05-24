@@ -453,18 +453,3 @@ textarea.input {
   border: 0;
 }
 
-/* Skip link aparece no foco */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 12px;
-  background: var(--primary);
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  text-decoration: none;
-  z-index: 9999;
-  transition: top var(--dur-fast) var(--ease-out);
-}
-.skip-link:focus { top: 12px; color: #fff; }
