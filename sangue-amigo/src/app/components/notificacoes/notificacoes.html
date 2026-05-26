@@ -4,7 +4,9 @@
     <h1>Notificações</h1>
   </header>
 
-  @if (notificacoes().length === 0) {
+  @if (erro()) {
+    <p class="msg-erro" role="alert">{{ erro() }}</p>
+  } @else if (notificacoes().length === 0) {
     <div class="vazio">
       <app-empty-anim variant="sino"/>
       <h3>Nada por aqui</h3>
@@ -18,8 +20,8 @@
             <app-icon name="bell" [size]="18"/>
           </span>
           <div class="info">
-            <p class="data">{{ n.data }}</p>
             <p class="titulo">{{ n.titulo }}</p>
+            <p class="mensagem">{{ n.mensagem }}</p>
           </div>
           @if (!n.lida) {
             <span class="dot" aria-hidden="true"></span>

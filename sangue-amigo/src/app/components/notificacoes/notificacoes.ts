@@ -1,13 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Icon } from '../shared/icon/icon';
 import { EmptyAnim } from '../shared/empty-anim/empty-anim';
-
-interface Notificacao {
-  id: number;
-  titulo: string;
-  data: string;
-  lida: boolean;
-}
+import { SangueAmigoService } from '../../services/sangue-amigo';
+import { SessaoService } from '../../services/sessao';
+import { Notificacao } from '../../models/notificacao';
 
 @Component({
   selector: 'app-notificacoes',
@@ -15,9 +11,22 @@ interface Notificacao {
   templateUrl: './notificacoes.html',
   styleUrl: './notificacoes.css',
 })
-export class Notificacoes {
-  notificacoes = signal<Notificacao[]>([
-    { id: 1, titulo: 'Os resultados do seu exame estão prontos!', data: '24 de agosto de 2025', lida: false },
-    { id: 2, titulo: 'Estoque de O+ em estado crítico próximo a você', data: '18 de agosto de 2025', lida: true }
-  ]);
+export class Notificacoes implements OnInit {
+  private service = inject(SangueAmigoService);
+  private sessao = inject(SessaoService);
+
+  notificacoes = signal<Notificacao[]>([]);
+  erro = signal('');
+
+  ngOnInit(): void {
+    const id = this.sessao.usuario()?.id;
+    if (id == null) {
+      this.erro.set('Você precisa estar logado para ver suas notificações.');
+      return;
+    }
+    this.service.listarNotificacoes(id).subscribe({
+      next: ns => this.notificacoes.set(ns),
+      error: () => this.erro.set('Não foi possível carregar as notificações.')
+    });
+  }
 }

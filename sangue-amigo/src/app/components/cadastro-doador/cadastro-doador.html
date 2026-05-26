@@ -20,22 +20,22 @@
         <div class="grid">
           <div class="campo col-2">
             <label class="label" for="nome">Nome completo *</label>
-            <input id="nome" class="input" type="text" name="nome" [(ngModel)]="nome" />
+            <input id="nome" class="input" type="text" name="nome" [(ngModel)]="nome" required />
           </div>
 
           <div class="campo">
             <label class="label" for="cpf">CPF *</label>
-            <input id="cpf" class="input" type="text" name="cpf" [(ngModel)]="CPF" placeholder="000.000.000-00" />
+            <input id="cpf" class="input" type="text" name="cpf" [(ngModel)]="CPF" placeholder="000.000.000-00" required />
           </div>
 
           <div class="campo">
-            <label class="label" for="email">E-mail</label>
-            <input id="email" class="input" type="email" name="email" [(ngModel)]="email" />
+            <label class="label" for="email">E-mail *</label>
+            <input id="email" class="input" type="email" name="email" [(ngModel)]="email" required />
           </div>
 
           <div class="campo">
-            <label class="label" for="tel">Telefone</label>
-            <input id="tel" class="input" type="text" name="telefone" [(ngModel)]="telefone" />
+            <label class="label" for="tel">Telefone *</label>
+            <input id="tel" class="input" type="text" name="telefone" [(ngModel)]="telefone" required />
           </div>
         </div>
       </fieldset>
@@ -53,18 +53,18 @@
           </div>
 
           <div class="campo">
-            <label class="label" for="cidade">Cidade</label>
-            <input id="cidade" class="input" type="text" name="cidade" [(ngModel)]="cidade" />
+            <label class="label" for="cidade">Cidade *</label>
+            <input id="cidade" class="input" type="text" name="cidade" [(ngModel)]="cidade" required />
           </div>
 
           <div class="campo">
-            <label class="label" for="bairro">Bairro</label>
-            <input id="bairro" class="input" type="text" name="bairro" [(ngModel)]="bairro" />
+            <label class="label" for="bairro">Bairro *</label>
+            <input id="bairro" class="input" type="text" name="bairro" [(ngModel)]="bairro" required />
           </div>
 
           <div class="campo col-2">
-            <label class="label" for="log">Logradouro</label>
-            <input id="log" class="input" type="text" name="logradouro" [(ngModel)]="logradouro" />
+            <label class="label" for="log">Logradouro *</label>
+            <input id="log" class="input" type="text" name="logradouro" [(ngModel)]="logradouro" required />
           </div>
         </div>
       </fieldset>
@@ -102,18 +102,18 @@
           </div>
 
           <div class="campo">
-            <label class="label" for="idade">Idade</label>
-            <input id="idade" class="input" type="number" name="idade" [(ngModel)]="idade" min="16" max="120" />
+            <label class="label" for="idade">Idade *</label>
+            <input id="idade" class="input" type="number" name="idade" [(ngModel)]="idade" min="16" max="120" required />
           </div>
 
           <div class="campo">
-            <label class="label" for="peso">Peso (kg)</label>
-            <input id="peso" class="input" type="number" name="peso" [(ngModel)]="peso" min="0" step="0.1" />
+            <label class="label" for="peso">Peso (kg) *</label>
+            <input id="peso" class="input" type="number" name="peso" [(ngModel)]="peso" min="0" step="0.1" required />
           </div>
 
           <div class="campo">
-            <label class="label" for="altura">Altura (m)</label>
-            <input id="altura" class="input" type="number" name="altura" [(ngModel)]="altura" min="0" step="0.01" />
+            <label class="label" for="altura">Altura (m) *</label>
+            <input id="altura" class="input" type="number" name="altura" [(ngModel)]="altura" min="0" step="0.01" required />
           </div>
         </div>
       </fieldset>

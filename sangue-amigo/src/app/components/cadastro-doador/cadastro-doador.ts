@@ -41,31 +41,46 @@ export class CadastroDoador {
   cadastrar(): void {
     this.erro.set('');
     this.sucesso.set('');
-    if (!this.nome || !this.CPF || !this.tipo_sanguineo) {
-      this.erro.set('Nome, CPF e tipo sanguíneo são obrigatórios.');
+
+    const faltando: string[] = [];
+    if (!this.nome) faltando.push('nome');
+    if (!this.CPF) faltando.push('CPF');
+    if (!this.email) faltando.push('e-mail');
+    if (!this.telefone) faltando.push('telefone');
+    if (!this.cidade) faltando.push('cidade');
+    if (!this.bairro) faltando.push('bairro');
+    if (!this.logradouro) faltando.push('logradouro');
+    if (!this.tipo_sanguineo) faltando.push('tipo sanguíneo');
+    if (this.idade == null) faltando.push('idade');
+    if (this.peso == null) faltando.push('peso');
+    if (this.altura == null) faltando.push('altura');
+
+    if (faltando.length > 0) {
+      this.erro.set(`Preencha os campos obrigatórios: ${faltando.join(', ')}.`);
       return;
     }
+
     const doador: Doador = {
       nome: this.nome,
       CPF: this.CPF,
-      email: this.email || undefined,
-      telefone: this.telefone || undefined,
-      cidade: this.cidade || undefined,
-      bairro: this.bairro || undefined,
-      logradouro: this.logradouro || undefined,
-      tipo_sanguineo: this.tipo_sanguineo,
-      sexo: this.sexo || undefined,
-      idade: this.idade ?? undefined,
-      peso: this.peso ?? undefined,
-      altura: this.altura ?? undefined
+      email: this.email,
+      telefone: this.telefone,
+      cidade: this.cidade,
+      bairro: this.bairro,
+      logradouro: this.logradouro,
+      tipo_sanguineo: this.tipo_sanguineo as TipoSanguineo,
+      idade: Math.trunc(Number(this.idade)),
+      peso: parseFloat(String(this.peso)),
+      altura: parseFloat(String(this.altura)),
+      ...(this.sexo ? { sexo: this.sexo as Sexo } : {})
     };
 
     this.enviando.set(true);
     this.service.cadastrarDoador(doador).subscribe({
-      next: () => {
+      next: (res) => {
         this.enviando.set(false);
         this.sucesso.set('Cadastro realizado com sucesso!');
-        this.sessao.setUsuario({ ...doador, id: 1 });
+        this.sessao.setUsuario(res.paciente);
         setTimeout(() => this.router.navigate(['/home']), 800);
       },
       error: (e) => {

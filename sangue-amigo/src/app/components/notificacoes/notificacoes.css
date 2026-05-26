@@ -61,20 +61,27 @@
 
 .info { flex: 1; min-width: 0; }
 
-.data {
-  margin: 0 0 2px;
-  font-size: 12px;
-  color: var(--text-soft);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-}
-
 .titulo {
-  margin: 0;
+  margin: 0 0 4px;
   font-weight: 600;
   color: var(--neutral-900);
   line-height: 1.4;
+}
+
+.mensagem {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.4;
+}
+
+.msg-erro {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  color: var(--text-soft);
+  text-align: center;
 }
 
 .dot {

@@ -7,6 +7,7 @@ import { Bolsa, FiltroBolsa } from '../models/bolsa';
 import { Agendamento } from '../models/agendamento';
 import { Doacao } from '../models/doacao';
 import { Hemocentro } from '../models/hemocentro';
+import { Notificacao } from '../models/notificacao';
 
 @Injectable({ providedIn: 'root' })
 export class SangueAmigoService {
@@ -18,20 +19,41 @@ export class SangueAmigoService {
   // ============================================================
 
   cadastrarDoador(doador: Doador): Observable<{ mensagem: string; paciente: Doador }> {
+    // peso/altura precisam chegar como float no Python; JS perde o ".0" em
+    // JSON.stringify, então serializamos o body manualmente.
+    const body = this.serializarPaciente(doador);
     return this.http.post<{ mensagem: string; paciente: Doador }>(
       `${this.apiUrl}/pacientes`,
-      doador
+      body,
+      { headers: { 'Content-Type': 'application/json' } }
     );
   }
 
-  // TODO: backend ainda nao expoe GET /pacientes — usando mock local
+  private serializarPaciente(d: Doador): string {
+    const obj: Record<string, unknown> = { ...d };
+    delete obj['peso'];
+    delete obj['altura'];
+    const base = JSON.stringify(obj);
+    const partes: string[] = [];
+    if (d.peso !== undefined && d.peso !== null) {
+      partes.push(`"peso":${Number(d.peso).toFixed(2)}`);
+    }
+    if (d.altura !== undefined && d.altura !== null) {
+      partes.push(`"altura":${Number(d.altura).toFixed(2)}`);
+    }
+    if (partes.length === 0) return base;
+    const sep = base === '{}' ? '' : ',';
+    return base.slice(0, -1) + sep + partes.join(',') + '}';
+  }
+
+  // FAKE: backend nao tem rota GET /pacientes (listar todos). Mock local ate
+  // que a rota exista no back.
   listarDoadores(): Observable<Doador[]> {
     return of(this.doadoresMock);
   }
 
-  // TODO: backend ainda nao expoe GET /pacientes/:id — usando mock local
-  getDoador(id: number): Observable<Doador | undefined> {
-    return of(this.doadoresMock.find(d => d.id === id));
+  getDoador(id: number): Observable<Doador> {
+    return this.http.get<Doador>(`${this.apiUrl}/pacientes/${id}`);
   }
 
   // ============================================================
@@ -47,7 +69,7 @@ export class SangueAmigoService {
   }
 
   getBolsa(id: number): Observable<Bolsa> {
-    return this.http.get<Bolsa>(`${this.apiUrl}/bolsa/${id}`);
+    return this.http.get<Bolsa>(`${this.apiUrl}/bolsas/${id}`);
   }
 
   criarBolsa(bolsa: Bolsa): Observable<{ mensagem: string; bolsas: Bolsa }> {
@@ -71,14 +93,21 @@ export class SangueAmigoService {
 
   criarAgendamento(ag: Agendamento): Observable<{ mensagem: string; agendamento: Agendamento }> {
     return this.http.post<{ mensagem: string; agendamento: Agendamento }>(
-      `${this.apiUrl}/agendamento`,
+      `${this.apiUrl}/agendamentos`,
       ag
     );
   }
 
-  // TODO: backend ainda nao expoe GET /agendamentos — usando mock local
   listarAgendamentosDoUsuario(idPaciente: number): Observable<Agendamento[]> {
-    return of(this.agendamentosMock.filter(a => a.id_paciente === idPaciente));
+    return this.http.get<Agendamento[]>(`${this.apiUrl}/agendamentos/${idPaciente}`);
+  }
+
+  // ============================================================
+  // NOTIFICACOES
+  // ============================================================
+
+  listarNotificacoes(idPaciente: number): Observable<Notificacao[]> {
+    return this.http.get<Notificacao[]>(`${this.apiUrl}/notificacoes/${idPaciente}`);
   }
 
   // ============================================================
@@ -92,26 +121,26 @@ export class SangueAmigoService {
     );
   }
 
-  // TODO: backend ainda nao expoe GET /doacoes — usando mock local
+  // FAKE: backend so expoe POST /doacoes, nao tem GET. Mock local ate que
+  // a rota de leitura exista no back.
   listarDoacoesDoUsuario(idPaciente: number): Observable<Doacao[]> {
     return of(this.doacoesMock.filter(x => x.id_paciente === idPaciente));
   }
 
   // ============================================================
-  // HEMOCENTROS (entidade nao existe no backend — 100% mock)
+  // HEMOCENTROS
+  // FAKE: a entidade Hemocentro nao existe no backend. Toda a secao abaixo
+  // depende de mock local ate que o back exponha as rotas.
   // ============================================================
 
-  // TODO: backend nao tem rotas de hemocentros — toda a secao abaixo eh mock
   listarHemocentros(): Observable<Hemocentro[]> {
     return of(this.hemocentrosMock);
   }
 
-  // TODO: backend nao tem rotas de hemocentros — mock
   getHemocentro(id: number): Observable<Hemocentro | undefined> {
     return of(this.hemocentrosMock.find(h => h.id === id));
   }
 
-  // TODO: backend nao tem rotas de hemocentros — mock
   getEstoqueHemocentro(id: number): Observable<Hemocentro['estoque']> {
     const h = this.hemocentrosMock.find(x => x.id === id);
     return of(h?.estoque ?? []);
@@ -133,8 +162,6 @@ export class SangueAmigoService {
       ultima_doacao: '2025-08-28'
     }
   ];
-
-  private agendamentosMock: Agendamento[] = [];
 
   private doacoesMock: Doacao[] = [
     { id: 1, id_paciente: 1, tipo_sanguineo: 'O+', ultima_doacao: '2025-08-28' },
